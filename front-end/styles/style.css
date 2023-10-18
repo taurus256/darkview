@@ -8,16 +8,15 @@ nav{
 }
 
 html{
-    height: 100%;
+    width: 100%;
 }
 
 body{
-    
     padding: 0px;
     margin: 0px;
     padding: 0px 144px 0px 144px;
-    background-color: rgb(10, 13, 15);
-    /* background: var(--main-background); */
+    /* background-color: rgb(10, 13, 15); */
+    background: var(--main-background);
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
     background-size: cover;
@@ -120,7 +119,9 @@ header{
     width: 1036px;
 }
 
-
+.dash-for-body{
+    width: 85%;
+}
 
 
 .browsers--container{
@@ -165,6 +166,7 @@ header{
 .how-to-use{
     margin-top: 107px;
     gap: 107px;
+    margin-bottom: 107px;
 }
 
 .how-to-use > h1{
@@ -181,13 +183,18 @@ header{
 
 
 .main-subscriptions{
-
+    margin-top: 107px;
 }
 
 
 
 .main-subscriptions > h1{
     text-align: center;
+}
+
+.subscriptions--container{
+    margin-top: 110px;
+    margin-bottom: 180px;
 }
 
 .subscriptions-top{
@@ -252,6 +259,7 @@ footer{
     margin: 0px;
     padding: 0px;
     width: 100vw;
+    max-width: 100%;
     height: 448px;
     display: flex;
     justify-content: center;
@@ -259,7 +267,7 @@ footer{
 }
 
 .footer--section{
-
+    width: 100%;
     padding: 82px 0px 109px 0px;
     display: flex;
     flex-shrink: 1;
@@ -292,23 +300,3 @@ footer{
     text-decoration-line: underline;
     text-transform: uppercase;
 }
-
-/* #grid-dash-1, #grid-dash-2, #grid-dash-3, #grid-dash-4{
-    position: relative;
-    height: 870px;
-    width: 2px;
-}
-
-#grid-dash-1{
-    top: -870px; left: -46px;
-}
-
-#grid-dash-2{
-    top: calc(-870px); left: 250px;
-}
-#grid-dash-3{
-    top: calc(-870px); left: 250px;
-}
-#grid-dash-4{
-    top: calc(-870px); left: 250px;
-} */
