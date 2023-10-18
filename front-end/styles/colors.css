@@ -1,0 +1,11 @@
+:root{
+    --main-background: linear-gradient(180deg, #000 6.31%, #141E30 21.64%, #1E3865 39.03%, #141E30 58.58%, #001332 77.81%, #243D66 93.28%);
+    --dash-color: #fff;
+    --color-white: #fff;
+    --color-blue: #496DB4;
+    --color-dark-blue: #091228;
+}
+
+.blue{
+    color: var(--color-blue);
+}

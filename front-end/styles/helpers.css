@@ -18,6 +18,7 @@ a{
 }
 
 .column{
+    display: flex;
     flex-direction: column;
 }
 
@@ -29,3 +30,4 @@ a{
     align-items: center;
     justify-content: center;
 }
+
