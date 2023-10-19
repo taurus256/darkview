@@ -6,44 +6,52 @@
     <link rel="stylesheet" href="/front-end/styles/style.css">
     <title>DarkView</title>
 </head>
-<!-- <nav>
-        <ul class="flex space-between">
-            <li><a href="./404.html">404</a></li>
-            <li><a href="./licence.html">Licence</a></li>
-            <li><a href="./main.html">Main</a></li>
-            <li><a href="./offer.html">Offer</a></li>
-            <li><a href="./registration.html">Reg</a></li>
-            <li><a href="./results.html">Results</a></li>
-            <li><a href="./profile.html">Pofile</a></li>
-        </ul>
-    </nav> -->
-
-
-
 <body class="column center">
     <header>
         <div class="wrapper flex space-between">
             <div class="nav--left-side"><img src="../src/img/DarkViewLogo.png" alt="DarkViewLogo"></div>
             <div class="nav--right-side">
                 <ul class="sign--options flex">
-                    <li><p>ВОЙТИ</p></li>
-                    <li><p>РЕГИСТРАЦИЯ</p></li>
+                    <li><a href=""><p>ВОЙТИ</p></a></li>
+                    <li><a href=""><p>РЕГИСТРАЦИЯ</p></a></li>
                 </ul>
             </div>
         </div>
         <div class="dash"></div>
     </header>
     <main class="column center">
-        <h1 class="h1--main-header"><b>DarkView</b> — это сервис для создания 
-            скриншотов сайтов в различных браузерах
-            под разными операционными системами</h1>
+        <h1 class="h1--main-header"><b>DarkView</b> — это сервис для создания<br>скриншотов сайтов  в различных браузерах
+            <br>под разными операционными системами</h1>
 
         <div class="browsers--container center ">
             <div class="dash"></div>
             <div class="browsers--drop-down">
-                <div class="open-list flex">
-                    <img src="../src/icons/triangle.svg" alt=">">
-                    <h5><b>Список поддерживаемых браузеров</b></h5>
+                <input type="checkbox" name="browsers--accordion" id="br-ac-cb1">
+                <label for="br-ac-cb1">
+                    <div class="open-list flex">
+                        <svg width="24" height="31" viewBox="0 0 24 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="Polygon 1" d="M24 15.5L-1.42741e-06 30.6554L-1.02484e-07 0.344555L24 15.5Z" fill="white"/>
+                        </svg>
+                        <h5><b>Список поддерживаемых браузеров</b></h5>
+                    </div>
+                </label>
+                <div class="browsers--list column space-between">
+                    <div class="browsers-item flex">
+                        <img src="../src/icons/browsers/edge.png" alt=">">
+                        <h1>EDGE</h1>
+                    </div>
+                    <div class="browsers-item flex">
+                        <img src="../src/icons/browsers/fire-fox.png" alt=">">
+                        <h1>FIREFOX</h1>
+                    </div>
+                    <div class="browsers-item flex">
+                        <img src="../src/icons/browsers/chrome.png" alt=">">
+                        <h1>CHROME</h1>
+                    </div>
+                    <div class="browsers-item flex">
+                        <img src="../src/icons/browsers/opera.png" alt=">">
+                        <h1>OPERA</h1>
+                    </div>
                 </div>
             </div>
             <div class="dash"></div>
@@ -54,57 +62,62 @@
             <h6 class="blue"><b>Регистрацию всегда можно отменить</b></h6>
         </div>
 
-        
-        <div class="dash-for-body"><div class="dash"></div></div>
+        <div class="dash"></div>
         
         <section class="how-to-use column center">
             <h1><b>Узнайте как пользоваться сервисом</b></h1>
             <video src="#" poster="../src/img/thumbnail.jpg"></video>
         </section>
         
-        <div class="dash-for-body"><div class="dash"></div></div>
+        <div class="dash"></div>
 
         <section class="main-subscriptions column center">
             <h1><b>Подключите pro-аккаунт для доступа <br> ко всем функциям сервиса</b></h1>
             <div class="subscriptions--container">                
                 <div class="subscriptions-grid">
-                    <!-- <div class="dash" id="grid-dash-1"></div> -->
-                    <h2 id="subscriptions-1">Количество<br>отрисовок в сутки</h2>
-                    <h2 id="subscriptions-2">Edge под Windows</h2>
-                    <h2 id="subscriptions-3">Safari под macOS</h2>
-                    <h2 id="subscriptions-4">Возможность делать<br>ссылки на результаты<br>отрисовки</h2>
-                    <h2 id="subscriptions-5">Цена</h2>
-                    <!-- <div class="dash" id="grid-dash-2"></div> -->
-                    <div id="subscriptions-6"><h2>1</h2></div>
-                    <div id="subscriptions-7"><img src="../src/icons/red-cross.svg" alt="X"></div>
-                    <div id="subscriptions-8"><img src="../src/icons/red-cross.svg" alt="X"></div>
-                    <div id="subscriptions-9"><img src="../src/icons/red-cross.svg" alt="X"></div>
-                    <div id="subscriptions-10"><p>БЕСПЛАТНО</p></div>
-                    <!-- <div class="dash" id="grid-dash-3"></div> -->
-                    <div id="subscriptions-11"><h2>10</h2></div>
-                    <div id="subscriptions-12"><img src="../src/icons/green-check.svg" alt="V"></div>
-                    <div id="subscriptions-13"><img src="../src/icons/green-check.svg" alt="V"></div>
-                    <div id="subscriptions-14"><img src="../src/icons/green-check.svg" alt="V"></div>
-                    <div id="subscriptions-15"><p>300<br>РУБ/МЕСЯЦ</p></div>
-                    <!-- <div class="dash" id="grid-dash-4"></div> -->
-                    <h2 class="blue" id="subscriptions-16">ФУНКЦИИ</h2>
-                    <div id="subscriptions-17"><h2 class="blue">FREE</h2></div>
-                    <div id="subscriptions-18"><h2 class="blue">PRO</h2></div>
+                    <!-- Разделители -->
+                    <div class="grid-dash" id="grid-dash-1"></div>
+                    <div class="grid-dash" id="grid-dash-2"></div>
+                    <div class="grid-dash" id="grid-dash-3"></div>
+                    <div class="grid-dash" id="grid-dash-4"></div>
+
+                    <!-- Первая колонка -->
+                    <div class="subscriptions-grid--first-column" id="subscription-option-1"><h1 class="blue">ФУНКЦИИ</h1></div>
+                    <div class="subscriptions-grid--first-column" id="subscription-description-1"><h2>Количество<br>отрисовок в сутки</h2></div>
+                    <div class="subscriptions-grid--first-column" id="subscription-description-2"><h2>Edge под Windows</h2></div>
+                    <div class="subscriptions-grid--first-column" id="subscription-description-3"><h2>Safari под macOS</h2></div>
+                    <div class="subscriptions-grid--first-column" id="subscription-description-4"><h2>Возможность делать<br>ссылки на результаты<br>отрисовки</h2></div>
+                    <div class="subscriptions-grid--first-column" id="subscription-price-1"><h2>Цена</h2></div>
+
+                    <!-- Вторая колонка -->
+                    <div class="flex center" id="subscription-option-2"><h1 class="blue">FREE</h1></div>
+                    <div class="flex center" id="subscription-description-5"><h2>1</h2></div>
+                    <div class="flex center" id="subscription-icon-1"><img src="../src/icons/red-cross.svg" alt="X"></div>
+                    <div class="flex center" id="subscription-icon-2"><img src="../src/icons/red-cross.svg" alt="X"></div>
+                    <div class="flex center" id="subscription-icon-3"><img src="../src/icons/red-cross.svg" alt="X"></div>
+                    <div class="flex center" id="subscription-price-2"><p>БЕСПЛАТНО</p></div>
+
+                    <!-- Третья колонка -->
+                    <div class="flex center" id="subscription-option-3"><h1 class="blue">PRO</h1></div>
+                    <div class="flex center" id="subscription-description-6"><h2>10</h2></div>
+                    <div class="flex center" id="subscription-icon-4"><img src="../src/icons/green-check.svg" alt="V"></div>
+                    <div class="flex center" id="subscription-icon-5"><img src="../src/icons/green-check.svg" alt="V"></div>
+                    <div class="flex center" id="subscription-icon-6"><img src="../src/icons/green-check.svg" alt="V"></div>
+                    <div class="flex center" id="subscription-price-3"><p>300<br>РУБ/МЕСЯЦ</p></div>
                 </div>
             </div>
         </section>
-
-        <footer>
-            <section class="footer--section">
-                <h6 class="blue">(C) Остапенко Е.В., 2023<br>ОГРНИП 123212321</h6>
-                <ul class="footer--links--wrap">
-                    <li><a href="#">Договор-оферта</a></li>
-                    <li><a href="#">Политика обработки<br>персональных<br>данных</a></li>
-                    <li><a href="#">О проекте</a></li>
-                    <li><a href="#"><img src="../src/icons/telegram.svg" alt="telegram"></a></li>
-                </ul>
-            </section>
-        </footer>
     </main>
+    <footer>
+        <section class="footer--section">
+            <h6 class="blue">(C) Остапенко Е.В., 2023<br>ОГРНИП 123212321</h6>
+            <ul class="footer--links--wrap">
+                <li><a href="#">Договор-оферта</a></li>
+                <li><a href="#">Политика обработки<br>персональных<br>данных</a></li>
+                <li><a href="#">О проекте</a></li>
+                <li><a href="#"><img src="../src/icons/telegram.svg" alt="telegram"></a></li>
+            </ul>
+        </section>
+    </footer>
 </body>
 </html>

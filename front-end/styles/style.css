@@ -1,29 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap');
 @import url(./mobile/style.mobile.css);
 @import url(./helpers.css);
 @import url(./colors.css);
 
-nav{
-    width: 100%;
-}
+/* nonGoogleImport */
+/* 
+@font-face {
+    font-family: "Jost";
+    src: 
+    url(../src/fonts/Jost/Jost-Regular.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-Black.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-Bold.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-ExtraBold.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-ExtraLight.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-Light.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-Medium.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-SemiBold.ttf) format('truetype'),
+    url(../src/fonts/Jost/Jost-Thin.ttf) format('truetype');
+} */
+
+
 
 html{
+    background-color: black;
     width: 100%;
 }
 
 body{
     padding: 0px;
     margin: 0px;
-    padding: 0px 144px 0px 144px;
-    /* background-color: rgb(10, 13, 15); */
     background: var(--main-background);
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
     background-size: cover;
     font-family: 'Jost', sans-serif;
-}
-body>*{
-    /* border: 1px solid aqua; */
 }
 
 h1{
@@ -89,8 +98,13 @@ header{
     width: 100%;
     
 }
+header > .dash {
+    margin: 0px 144px 0px 144px;
+    width: calc(100% - (144px * 2));
+}
 
 .wrapper{
+    padding: 0px 144px 0px 144px;
     align-items: center;
     height: 215px;
 }
@@ -99,8 +113,6 @@ header{
 .nav--left-side > img{
     width: 400px;
 }
-
-
 
 .sign--options > li{
     padding: 38px;
@@ -113,44 +125,97 @@ header{
     opacity: 15%;
 }
 
+main{
+    width: calc(100% - (144px * 2));
+}
+
 .h1--main-header{
     text-align: center;
     margin-top: 92px;
-    width: 1036px;
-}
-
-.dash-for-body{
-    width: 85%;
+    text-wrap: wrap;
 }
 
 
+/* BrowsersDropDown start */
 .browsers--container{
     margin-top: 58px;
     width: 792px; 
     display: flex;
     flex-direction: column;
     gap: 30px;
+    overflow: hidden;
 }
 
-.browsers--drop-down{
-    /*Тут будет осуществляться dropdown*/
+.browsers--drop-down input{
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
 }
+
+.browsers--drop-down > label > * {
+    transition: all 0.35s;
+}
+
+.browsers--drop-down input:checked ~ .browsers--list{
+    transition: 300ms;
+    height: 500px;
+    padding-top: 74px;
+    gap: 40px;
+}
+
+.browsers--list{
+    height: 0;
+    overflow: hidden;
+    transition: all 0.35s;
+    padding-top: 0px;
+    gap: 0px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.browsers-item{
+    align-items: center;
+    gap: 80px;
+    width: 350px;
+}
+
+.browsers-item > img{
+    width: 75px;
+    height: 75px;
+}
+
+.browsers-item > p {
+    text-align: center;
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.2px;
+}
+
+
 
 .open-list{
-    /* margin: 30px 0px 30px 0px; */
     cursor: pointer;
     gap: 34px;
     align-items: center;
 }
 
-.open-list > img{
-    width: 35px;
-    height: 32px;
-}
-
 .open-list > b{
     font-weight: 700;
 }
+
+.browsers--drop-down input:checked + label > .open-list > svg {
+    transform: rotate(90deg);
+    transition: 300ms;
+}
+
+.browsers--drop-down input + label > .open-list > svg {
+    transform: rotate(0);
+    transition: 300ms;
+}
+/* BrowsersDropDown end */
 
 .main-quick-info{
     margin-top: 66px;
@@ -186,15 +251,13 @@ header{
     margin-top: 107px;
 }
 
-
-
 .main-subscriptions > h1{
     text-align: center;
 }
 
 .subscriptions--container{
     margin-top: 110px;
-    margin-bottom: 180px;
+    margin-bottom: 126px;
 }
 
 .subscriptions-top{
@@ -207,59 +270,59 @@ header{
 
 .subscriptions-grid{
     display: grid;
-    width: 1000px;
-    max-width: 1000px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 20px repeat(2, 1fr) 20px 1fr 20px 1fr 20px;
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+ 
+    #grid-dash-1 { grid-area: 2 / 1 / 7 / 2; }
+    #grid-dash-2 { grid-area: 2 / 4 / 7 / 5; }
+    #grid-dash-3 { grid-area: 2 / 6 / 7 / 7; }
+    #grid-dash-4 { grid-area: 2 / 8 / 7 / 9; }
 
-.subscriptions-grid > h2{
+    #subscription-option-1 { grid-area: 1 / 2 / 2 / 4; }
+    #subscription-description-1 { grid-area: 2 / 2 / 3 / 4; }
+    #subscription-description-2 { grid-area: 3 / 2 / 4 / 4; }
+    #subscription-description-3 { grid-area: 4 / 2 / 5 / 4; }
+    #subscription-description-4 { grid-area: 5 / 2 / 6 / 4; }
+    #subscription-price-1 { grid-area: 6 / 2 / 7 / 4; }
+
+    #subscription-option-2 { grid-area: 1 / 5 / 2 / 6; } 
+    #subscription-description-5 > h2 { font-size: 55px; }
+    #subscription-description-5 { grid-area: 2 / 5 / 3 / 6; }
+    #subscription-icon-1 { grid-area: 3 / 5 / 4 / 6; }
+    #subscription-icon-2 { grid-area: 4 / 5 / 5 / 6; }
+    #subscription-icon-3 { grid-area: 5 / 5 / 6 / 6; }
+    #subscription-price-2 { grid-area: 6 / 5 / 7 / 6; }
+
+    #subscription-option-3 { grid-area: 1 / 7 / 2 / 8; }
+    #subscription-description-6 > h2 { font-size: 55px; }
+    #subscription-description-6 { grid-area: 2 / 7 / 3 / 8; }
+    #subscription-icon-4 { grid-area: 3 / 7 / 4 / 8; }
+    #subscription-icon-5 { grid-area: 4 / 7 / 5 / 8; }
+    #subscription-icon-6 { grid-area: 5 / 7 / 6 / 8; }
+    #subscription-price-3 { grid-area: 6 / 7 / 7 / 8; text-align: center;}
+    
+.subscriptions-grid--first-column{
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
-.subscriptions-grid > div > p{
-    text-align: center;
-    text-justify: auto;
-}
-
-.subscriptions-grid > div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.subscriptions-grid > div > .dash{
-    height: 100%;
+.grid-dash{
+    margin-left: 10px;
     width: 2px;
+    height: 100%;
+    background-color: white;
+    opacity: 15%;
 }
 
-#subscriptions-1 { grid-area: 2 / 1 / 3 / 3; }
-#subscriptions-2 { grid-area: 3 / 1 / 4 / 3; }
-#subscriptions-3 { grid-area: 4 / 1 / 5 / 3; }
-#subscriptions-4 { grid-area: 5 / 1 / 6 / 3; }
-#subscriptions-5 { grid-area: 6 / 1 / 7 / 3; }
-#subscriptions-6 { grid-area: 2 / 3 / 3 / 4; }
-#subscriptions-7 { grid-area: 3 / 3 / 4 / 4; }
-#subscriptions-8 { grid-area: 4 / 3 / 5 / 4; }
-#subscriptions-9 { grid-area: 5 / 3 / 6 / 4; }
-#subscriptions-10 { grid-area: 6 / 3 / 7 / 4; }
-#subscriptions-11 { grid-area: 2 / 4 / 3 / 5; }
-#subscriptions-12 { grid-area: 3 / 4 / 4 / 5; }
-#subscriptions-13 { grid-area: 4 / 4 / 5 / 5; }
-#subscriptions-14 { grid-area: 5 / 4 / 6 / 5; }
-#subscriptions-15 { grid-area: 6 / 4 / 7 / 5; }
-#subscriptions-16 { grid-area: 1 / 1 / 2 / 3; }
-#subscriptions-17 { grid-area: 1 / 3 / 2 / 4; }
-#subscriptions-18 { grid-area: 1 / 4 / 2 / 5; } 
 
 footer{
-    margin: 0px;
-    padding: 0px;
-    width: 100vw;
-    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
     height: 448px;
     display: flex;
     justify-content: center;
@@ -275,6 +338,16 @@ footer{
     gap: 120px;
     align-items: flex-start;
     justify-content: center;
+}
+
+.footer--section > h6{
+    text-align: center;
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.2px;
 }
 
 .footer--links--wrap{
@@ -295,7 +368,7 @@ footer{
     font-size: 25px;
     font-style: normal;
     font-weight: 500;
-    line-height: 55px; /* 220% */
+    line-height: 55px;
     letter-spacing: 1px;
     text-decoration-line: underline;
     text-transform: uppercase;
