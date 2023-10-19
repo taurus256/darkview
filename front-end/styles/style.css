@@ -35,6 +35,11 @@ body{
     font-family: 'Jost', sans-serif;
 }
 
+a > p:hover{
+    color: var(--color-blue);
+    transition: 100ms;
+}
+
 h1{
     padding: 0px;
     margin: 0px;
