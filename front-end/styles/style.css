@@ -443,11 +443,30 @@ footer{
     margin-left: 8px;
 }
 
-.render-card--bottom input{
+.render-card--bottom input[type="checkbox"]{
     position: absolute;
     width: 100px;
     height: 100px;
     opacity: 0;
+}
+
+.render-card--bottom input[type="radio"]{
+    /* position: absolute; */
+    width: 24px;
+    height: 24px;
+    border-radius: 0px;
+    appearance: none;
+    background-color: var(--color-dark-blue);
+    /* opacity: 0; */
+    cursor: pointer;
+}
+
+.render-card--bottom input[type="radio"]:checked{
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-blue);
+    display: grid;
+    place-content: center;
 }
 
 .render-card--state-display{

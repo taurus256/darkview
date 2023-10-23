@@ -5,7 +5,7 @@
         "id": 0, 
         "OS": "WIN",
         "Browser": "edge", 
-        "Status" : "none", 
+        "Status" : "any", 
         "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}] 
       },
       { 
