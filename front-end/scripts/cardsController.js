@@ -2,7 +2,6 @@ let CardsArray = []
 
 
 function CheckForStage(array, state){
-  // console.log(array.find((item => item[`${state}`] == false)))
   return array.find((item => item[`${state}`] == false)) === undefined ? true : false;
 }
 
@@ -50,10 +49,10 @@ class Card{
     _card.appendChild(cardTop);
 
 
-    // Средняя часть карточки
+// Средняя часть карточки
     let cardMiddle = document.createElement("div"); cardMiddle.classList.add("render-card--state-display");
 
-    //Left
+    // Левая часть
     let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
     let previewImg = document.createElement("img"); previewImg.setAttribute("src", this.DiffPreview == '' ? "../src/img/cards/placeholder.png" : this.DiffPreview);
     leftSide.appendChild(previewImg);

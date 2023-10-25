@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url(./mobile/style.mobile.css);
 @import url(./helpers.css);
 @import url(./colors.css);
@@ -147,10 +148,10 @@ main{
 /* BrowsersDropDown start */
 .browsers--container{
     margin-top: 58px;
-    width: 792px; 
+    width: 95%; 
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 34px;
     overflow: hidden;
 }
 
@@ -166,7 +167,7 @@ main{
 
 .browsers--drop-down input:checked ~ .browsers--list{
     transition: 300ms;
-    height: 500px;
+    height: 750px;
     padding-top: 74px;
     gap: 40px;
 }
@@ -181,30 +182,8 @@ main{
     margin-bottom: 4px;
 }
 
-.browsers-item{
-    align-items: center;
-    gap: 80px;
-    width: 350px;
-}
-
-.browsers-item > img{
-    width: 75px;
-    height: 75px;
-}
-
-.browsers-item > p {
-    text-align: center;
-    font-family: Jost;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1.2px;
-}
-
-
-
 .open-list{
+    
     cursor: pointer;
     gap: 34px;
     align-items: center;
@@ -212,6 +191,11 @@ main{
 
 .open-list > b{
     font-weight: 700;
+}
+
+.open-list > h5{
+    min-width: 540px;
+    max-width: fit-content;
 }
 
 .browsers--drop-down input:checked + label > .open-list > svg {
@@ -223,6 +207,81 @@ main{
     transform: rotate(0);
     transition: 300ms;
 }
+
+/* Таблица */
+.browsers--support-table {
+    margin-top: 90px;
+	width: 100%;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+    color: var(--color-white); 
+}
+
+.browsers--support-table th {
+	font-weight: bold;
+	padding: 5px;
+	border: 2px solid rgba(255, 255, 255, 0.15);;
+}
+
+.browsers--support-table td {
+	border: 2px solid rgba(255, 255, 255, 0.15);;
+	padding: 5px;
+    margin: 0px auto;
+
+    width: 176px;
+    height: 94px;
+    text-align: center;
+}
+
+.browsers--support-table td > .plus-icon{
+    width: 25px;
+    height: 25px;
+}
+
+.browsers--support-table tr:first-child td:nth-child(n){
+    border-top: none;
+}
+
+.browsers--support-table tr:last-child td:nth-child(n){
+    border-bottom: none;
+}
+
+.browsers--support-table tr td:first-child, .browsers--support-table tr th:first-child {
+	border-left: none;
+}
+
+.browsers--support-table tr td:last-child, .browsers--support-table tr th:last-child {
+	border-right: none;
+}
+
+.table--browser{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.table--browser-right{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.table--browser > p, .table--browser-right > p{
+    text-align: center;
+    font-family: Jost;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.8px;
+}
+
+.table--browser > img, .table--browser-right > img{
+    width: 30px;
+    height: 30px;
+}
 /* BrowsersDropDown end */
 
 .main-quick-info{
@@ -230,6 +289,17 @@ main{
     margin-bottom: 107px;
     width: 720px;
     gap: 48px;
+}
+
+.main-quick-info > h5 > span > a, .main-quick-info > h5 > span > a:visited{
+    text-decoration: underline;
+    color: var(--color-blue);
+    transition: 100ms;
+}
+
+.main-quick-info > h5 > span > a:hover{
+    color: var(--color-white);
+    transition: 100ms;
 }
 
 .main-quick-info > b{
@@ -254,6 +324,115 @@ main{
     border-radius: 20px;
 }
 
+/* FAQ */
+
+.FAQ--container{
+    margin-top: 112px;
+    width: 95%; 
+    display: flex;
+    flex-direction: column;
+    gap: 61px;
+    overflow: hidden;
+    margin-bottom: 144px;
+}
+
+.FAQ--drop-down input{
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.FAQ--drop-down > label > * {
+    transition: all 0.35s;
+}
+
+.FAQ--drop-down input:checked ~ .FAQ--list{
+    transition: 300ms;
+    height: 750px;
+    padding-top: 74px;
+    gap: 40px;
+}
+
+.FAQ--drop-down input:checked ~ .FAQ--list:last-child{
+    margin-bottom: 90px;
+}
+
+.FAQ--list{
+    width: 857px;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.35s;
+    padding-top: 0px;
+    gap: 0px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.FAQ--drop-down > .open-list{
+    
+    cursor: pointer;
+    gap: 34px;
+    align-items: center;
+}
+
+.FAQ--drop-down > .open-list > b{
+    font-weight: 700;
+}
+
+.FAQ--drop-down > .open-list > h5{
+    min-width: 540px;
+    max-width: fit-content;
+}
+
+.FAQ--drop-down input:checked + label > .open-list > svg {
+    transform: rotate(90deg);
+    transition: 300ms;
+}
+
+.FAQ--drop-down input + label > .open-list > svg {
+    transform: rotate(0);
+    transition: 300ms;
+}
+
+.FAQ--item{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.FAQ--item > p{
+    color: var(--color-white);
+
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    line-height: 110%;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.8px;
+}
+
+.FAQ--item > p > b{
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.96px;
+}
+
+.FAQ--item > p > span > a, .FAQ--item > p > span > a:visited{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    text-decoration-line: underline;
+}
+
+/* FAQ end */
 
 .main-subscriptions{
     margin-top: 107px;
@@ -380,6 +559,22 @@ footer{
     letter-spacing: 1px;
     text-decoration-line: underline;
     text-transform: uppercase;
+}
+
+.footer--links--wrap > li > a:hover{
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 55px;
+    letter-spacing: 1px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+}
+
+.footer--links--wrap > li > a > img:hover{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(241deg) brightness(504%) contrast(104%);
 }
 
 
