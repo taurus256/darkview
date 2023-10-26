@@ -671,8 +671,10 @@ footer{
 .render-card--state-display--left{
     display: flex;
     flex-direction: column;
-    max-height: 300px;
+    max-width: 300px;
+    height: 300px;
 }
+
 
 .render-card--state-display--right{
     display: flex;

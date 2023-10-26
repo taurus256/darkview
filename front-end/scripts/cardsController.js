@@ -1,37 +1,52 @@
 let CardsArray = []
+let STAGES = ['Default', 'ReadyToCreateDiff', 'ReadyToShowDiff']
+let a = 0;
 
+function CheckForStage(arrayByUUID){
 
-function CheckForStage(array, state){
-  return array.find((item => item[`${state}`] == false)) === undefined ? true : false;
+  arrayByUUID.Stage = STAGES[0];
+  if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
+    arrayByUUID.Stage = STAGES[1];
+  }
+  if (arrayByUUID.Cards.find((item => item['readyToShowDiff'] == false)) === undefined) {
+    arrayByUUID.Stage = STAGES[2];
+  }
+  arrayByUUID.Cards.forEach(element => {
+    element.stage = arrayByUUID.Stage;
+  });
 }
 
-function updateInArray(array, id, updatedItem){
-  let elementId = array.findIndex((item => item.id == id));
+function updateInArray(array, UUID, id, updatedItem){
+  // Возможно найдется баг при обновлении карточки
+  let elementId = array.findIndex((item => item.id == id && item.UUID == UUID));
   array[elementId] = updatedItem;
 }
 
 class Card{
   constructor(card){
-    if(card !== undefined) 
-    {
-      this.id = card.id;
-      this.OS = card.OS;
-      this.status = card.Status;
-      this.Browser = card.Browser;
-      this.ScreenPreview = card.LINKS[0].ScreenPreview;
-      this.ScreenFullLink = card.LINKS[0].ScreenFullLink;
-      this.DiffPreview = card.LINKS[0].DiffPreview;
-      this.DiffFullLink = card.LINKS[0].DiffFullLink;
+    if(card === undefined) 
+    {return;}
+    
+    this.UUID = card.UUID;
+    this.id = card.id;
+    this.OS = card.OS;
+    this.status = card.Status;
+    this.Browser = card.Browser;
+    this.ScreenPreview = card.LINKS[0].ScreenPreview;
+    this.ScreenFullLink = card.LINKS[0].ScreenFullLink;
+    this.DiffPreview = card.LINKS[0].DiffPreview;
+    this.DiffFullLink = card.LINKS[0].DiffFullLink;
 
-      this.diffIsShowing = false;
-      this.readyToCreateDiff = this.ScreenPreview != '' && this.ScreenFullLink != '' && this.status == '200';
-      this.readyToShowDiff = this.DiffPreview != '' && this.DiffFullLink != '' && this.status == '200';
-    }
+    this.diffIsShowing = false;
+    this.readyToCreateDiff = this.ScreenPreview != '' && this.ScreenFullLink != ''; // && this.status == '200';
+    this.readyToShowDiff = this.DiffPreview != '' && this.DiffFullLink != '' //&& this.status == '200';
+    
+    this.stage = card.Stage;
   }
 
   diffPreviewToggle(){
     this.diffIsShowing = !this.diffIsShowing;
-    updateInArray(CardsArray, this.id, this);
+    updateInArray(CardsArray, this.UUID, this.id, this);
     display()
   }
 
@@ -54,7 +69,7 @@ class Card{
 
     // Левая часть
     let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
-    let previewImg = document.createElement("img"); previewImg.setAttribute("src", this.DiffPreview == '' ? "../src/img/cards/placeholder.png" : this.DiffPreview);
+    let previewImg = document.createElement("img"); previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : this.ScreenPreview);
     leftSide.appendChild(previewImg);
 
     // Отображение статуса
@@ -75,7 +90,7 @@ class Card{
 
     switch (this.status.toUpperCase()) {
       case '200':
-        createContextByStatus("card-state", "", this.ScreenPreview);
+        createContextByStatus("card-state", "", "");
         break;
 
       case 'PENDING':
@@ -119,7 +134,7 @@ class Card{
 
     // TODO Улучшить читаемость кода
     // Конец карточки
-    if(CheckForStage(CardsArray, 'readyToCreateDiff') && !CheckForStage(CardsArray, 'readyToShowDiff')){
+    if(this.stage == STAGES[1]){
       
 
       // Radio для выбора образца 
@@ -140,7 +155,7 @@ class Card{
       cardBottom.appendChild(labelForRadio);
     }
 
-    if (CheckForStage(CardsArray, 'readyToCreateDiff') && CheckForStage(CardsArray, 'readyToShowDiff')) {
+    if (this.stage == STAGES[2]) {
       // Checkbox для демонстрации сравнения
       let showDiffCheckbox = document.createElement("input"); 
       showDiffCheckbox.setAttribute("type", "checkbox"); 
@@ -166,18 +181,41 @@ class Card{
   }
 }
 
-let obj = { "id": 0, "OS": "WIN","Browser": "edge", "Status" : "Обрабатывается", "LINKS":[{"ScreenPreview": "w", "ScreenFullLink": "w", "DiffPreview": "", "DiffFullLink": ""}] }
-CardsArray.push(new Card(obj))
-CardsArray.push(new Card({ "id": 1, "OS": "MAC", "Status" : "Pending","Browser": "Safari", "LINKS":[{"ScreenPreview": "w", "ScreenFullLink": "w", "DiffPreview": "", "DiffFullLink": ""}]} ))
-CardsArray.push(new Card({ "id": 2, "OS": "LIN", "Status" : "200", "Browser": "FIREfox", "LINKS":[{"ScreenPreview": "w", "ScreenFullLink": "w", "DiffPreview": "", "DiffFullLink": ""}]} ))
-CardsArray.push(new Card(undefined))
+function getArrayOfSections(array){
+  array.forEach(requestByUUID => {
+    let newUUIDSection = { "UUID" : requestByUUID.UUID, "Cards" : [], "Stage" : STAGES[0]}
+    requestByUUID.CARDS.forEach(card => {
+      newUUIDSection.Cards.push(new Card({ "UUID":requestByUUID.UUID, "Stage" : newUUIDSection.Stage, "id": card.id, "OS": card.OS, "Status" : card.Status, "Browser": card.Browser, "LINKS":[{"ScreenPreview": card.LINKS[0].ScreenPreview, "ScreenFullLink": card.LINKS[0].ScreenFull, "DiffPreview": card.LINKS[0].DiffPreview, "DiffFullLink": card.LINKS[0].DiffFull}]} ));
+    });
+    CardsArray.push(newUUIDSection)
+  });
+  
+}
+
+getArrayOfSections(cardsDataArray)
 
 function display(){
-  let parent = document.getElementById("__UUID");
-  parent.innerHTML = '';
+  // Create UUIDSections
+  let rootNode = document.getElementById("cards--section");
   CardsArray.forEach(element => {
-    element.render(parent);
+
+    CheckForStage(CardsArray.find((item => item.UUID == element.UUID)))
+
+    let newUUIDSection = document.createElement("div");
+    newUUIDSection.classList.add("render-card--container");
+    newUUIDSection.classList.add("flex");
+    newUUIDSection.setAttribute("id", `${element.UUID}`);
+    rootNode.appendChild(newUUIDSection);
   });
+
+  // Display Cards in UUIDSections
+  CardsArray.forEach(section => {
+    let parent = document.getElementById(`${section.UUID}`);
+    parent.innerHTML = '';
+    section.Cards.forEach(card => {
+      card.render(parent);
+  });
+});
 }
 
 display();
