@@ -6,32 +6,7 @@ const cardsDataArray = [
             "id": 0, 
             "OS": "WIN",
             "Browser": "edge", 
-            "Status" : "any", 
-            "LINKS":[{"ScreenPreview": "w", "ScreenFull": "w", "DiffPreview": "", "DiffFull": ""}] 
-          },
-          { 
-            "id": 1, 
-            "OS": "MAC", 
-            "Status" : "Pending",
-            "Browser": "Safari", 
-            "LINKS":[{"ScreenPreview": "w", "ScreenFull": "w", "DiffPreview": "", "DiffFull": ""}]
-          },
-          { 
-            "id": 2, 
-            "OS": "LIN", 
-            "Status" : "200", 
-            "Browser": "FIREfox", 
-            "LINKS":[{"ScreenPreview": "https://mobirise.com/assets52/images/features1.jpg", "ScreenFull": "https://mobirise.com/assets52/images/features1.jpg", "DiffPreview": "", "DiffFull": ""}]}
-        ]
-    },
-    {
-        "UUID": "WELL",
-        "CARDS":[
-          { 
-            "id": 0, 
-            "OS": "WIN",
-            "Browser": "edge", 
-            "Status" : "any", 
+            "Status" : "Pending", 
             "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}] 
           },
           { 
@@ -44,9 +19,43 @@ const cardsDataArray = [
           { 
             "id": 2, 
             "OS": "LIN", 
-            "Status" : "200", 
+            "Status" : "Pending", 
             "Browser": "FIREfox", 
-            "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]}
+            "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
+          },
+          { 
+            "id": 3, 
+            "OS": "IOS", 
+            "Status" : "Pending", 
+            "Browser": "safari", 
+            "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
+          }
         ]
     }
+    // ,
+    // {
+    //     "UUID": "WELL",
+    //     "CARDS":[
+    //       { 
+    //         "id": 0, 
+    //         "OS": "WIN",
+    //         "Browser": "edge", 
+    //         "Status" : "any", 
+    //         "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}] 
+    //       },
+    //       { 
+    //         "id": 1, 
+    //         "OS": "MAC", 
+    //         "Status" : "Pending",
+    //         "Browser": "Safari", 
+    //         "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
+    //       },
+    //       { 
+    //         "id": 2, 
+    //         "OS": "LIN", 
+    //         "Status" : "200", 
+    //         "Browser": "FIREfox", 
+    //         "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]}
+    //     ]
+    // }
 ]
