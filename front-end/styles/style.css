@@ -516,7 +516,7 @@ main{
 footer{
     width: 100%;
     min-width: 100%;
-    height: 448px;
+    height: 338px;
     display: flex;
     justify-content: center;
     background-color: var(--color-dark-blue);
@@ -545,9 +545,9 @@ footer{
 
 .footer--links--wrap{
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 38px;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    gap: 108px;
     align-items: flex-start;
     justify-content: flex-start;
     max-height: 330px;
@@ -583,6 +583,9 @@ footer{
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(241deg) brightness(504%) contrast(104%);
 }
 
+.footer-telegram-wrap{
+    gap: 44px;
+}
 
 /* SCREENSHOT - CARDS */
 .vertical-dash{
@@ -593,7 +596,7 @@ footer{
 
 .render-card--section{
     min-height: 400px;
-    width: fit-content;
+    width: 100%;
     margin-top: 40px;
     margin-bottom: 80px;
 }
@@ -613,11 +616,14 @@ footer{
 }
 
 .render-card--container{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
     height: 200%;
-    gap: 116px;
+    gap: 28px;
     margin-bottom: 80;
     flex-wrap: wrap;
-    row-gap: 100px;
+    row-gap: 56px;
 }
 
 .render-card--top{

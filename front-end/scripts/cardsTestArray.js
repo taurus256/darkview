@@ -29,6 +29,13 @@ const cardsDataArray = [
             "Status" : "Pending", 
             "Browser": "safari", 
             "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
+          },
+          { 
+            "id": 4, 
+            "OS": "IOS", 
+            "Status" : "Pending", 
+            "Browser": "safari", 
+            "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
           }
         ]
     }
