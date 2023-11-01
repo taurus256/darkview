@@ -38,8 +38,8 @@ class Card{
     this.DiffFullLink = card.LINKS[0].DiffFullLink;
 
     this.diffIsShowing = false;
-    this.readyToCreateDiff = this.ScreenPreview != '' && this.ScreenFullLink != ''; // && this.status == '200';
-    this.readyToShowDiff = this.DiffPreview != '' && this.DiffFullLink != '' //&& this.status == '200';
+    this.readyToCreateDiff = this.status == 'SUCCESS';
+    this.readyToShowDiff = this.DiffPreview != undefined && this.status == 'PREVIEW_IS_READY';
     
     this.stage = card.Stage;
   }
@@ -89,11 +89,15 @@ class Card{
     }
 
     switch (this.status.toUpperCase()) {
-      case '200':
+      case 'SUCCESS':
+        createContextByStatus("card-state", "", "");
+        break;
+      
+      case 'PREVIEW_IS_READY':
         createContextByStatus("card-state", "", "");
         break;
 
-      case 'PENDING':
+      case 'inprogress':
         createContextByStatus("animation--card-state", "В обработке", "../src/icons/loading.svg");
         break;
 
@@ -116,7 +120,7 @@ class Card{
 
       rightSide.appendChild(dash);
 
-      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", "../src/img/cards/DiffExample.png");
+      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", this.DiffPreview);
 
       rightSide.appendChild(diffPicture);
 
@@ -181,18 +185,16 @@ class Card{
   }
 }
 
-function getArrayOfSections(array){
-  array.forEach(requestByUUID => {
-    let newUUIDSection = { "UUID" : requestByUUID.UUID, "Cards" : [], "Stage" : STAGES[0]}
-    requestByUUID.CARDS.forEach(card => {
-      newUUIDSection.Cards.push(new Card({ "UUID":requestByUUID.UUID, "Stage" : newUUIDSection.Stage, "id": card.id, "OS": card.OS, "Status" : card.Status, "Browser": card.Browser, "LINKS":[{"ScreenPreview": card.LINKS[0].ScreenPreview, "ScreenFullLink": card.LINKS[0].ScreenFull, "DiffPreview": card.LINKS[0].DiffPreview, "DiffFullLink": card.LINKS[0].DiffFull}]} ));
-    });
-    CardsArray.push(newUUIDSection)
+
+function getArrayOfSections(objectJSON){
+  let newUUIDSection = { "UUID" : objectJSON.uuid, "Cards" : [], "Stage" : STAGES[0]}
+  objectJSON.cards.forEach(card => {
+    newUUIDSection.Cards.push(new Card({ "UUID":objectJSON.uuid, "Stage" : newUUIDSection.Stage, "id": card.uuid, "OS": card.os, "Status" : card.status, "Browser": card.browser, "LINKS":[{"ScreenPreview": card.links.screenPreview, "ScreenFullLink": card.links.screenFull, "DiffPreview": card.links.diffPreview, "DiffFullLink": card.links.diffFull}]} ));
   });
-  
+  CardsArray.push(newUUIDSection);
 }
 
-getArrayOfSections(cardsDataArray)
+
 
 function display(){
   // Create UUIDSections
@@ -218,4 +220,34 @@ function display(){
 });
 }
 
-display();
+
+async function getCards() {
+  try {
+    // ../scripts/test.json
+    // http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data
+    const response = await fetch('http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data', {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      },
+      credentials: 'same-origin'
+    });
+
+    
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    getArrayOfSections(result);
+    display();
+    return result;
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+window.onload = () => {
+  getCards();
+}

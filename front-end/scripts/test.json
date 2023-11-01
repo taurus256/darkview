@@ -1,25 +1,29 @@
 {
-    "UUID": "UUID",
-    "CARDS":[
-      { 
-        "id": 0, 
-        "OS": "WIN",
-        "Browser": "edge", 
-        "Status" : "any", 
-        "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}] 
-      },
-      { 
-        "id": 1, 
-        "OS": "MAC", 
-        "Status" : "Pending",
-        "Browser": "Safari", 
-        "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]
-      },
-      { 
-        "id": 2, 
-        "OS": "LIN", 
-        "Status" : "200", 
-        "Browser": "FIREfox", 
-        "LINKS":[{"ScreenPreview": "", "ScreenFull": "", "DiffPreview": "", "DiffFull": ""}]}
-    ]
+    "cards": [
+        {
+            "status": "SUCCESS",
+            "id": 632,
+            "uuid": "fed060a0-289e-48c5-aef2-d542a6fcaa8f",
+            "links": {
+                "screenFull": "/fed060a0-289e-48c5-aef2-d542a6fcaa8f/show",
+                "screenPreview": "/fed060a0-289e-48c5-aef2-d542a6fcaa8f/preview"
+            },
+            "os": "WIN",
+            "browser": "FIREFOX"
+        },
+        {
+            "status": "PREVIEW_IS_READY",
+            "id": 631,
+            "uuid": "eb65d305-b87b-4290-ae51-42934ba378e9",
+            "links": {
+                "diffPreview": "/eb65d305-b87b-4290-ae51-42934ba378e9/diff/preview",
+                "screenFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/show",
+                "diffFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/diff/show",
+                "screenPreview": "/eb65d305-b87b-4290-ae51-42934ba378e9/preview"
+            },
+            "os": "WIN",
+            "browser": "EDGE"
+        }
+    ],
+    "uuid": "accd8c15-bd68-4ec5-9ac3-1ecd6adfda22"
 }
