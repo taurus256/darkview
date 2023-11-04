@@ -1,26 +1,5 @@
 let CardsArray = []
 let STAGES = ['Default', 'ReadyToCreateDiff', 'ReadyToShowDiff']
-let a = 0;
-
-function CheckForStage(arrayByUUID){
-
-  arrayByUUID.Stage = STAGES[0];
-  if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
-    arrayByUUID.Stage = STAGES[1];
-  }
-  if (arrayByUUID.Cards.find((item => item['readyToShowDiff'] == false)) === undefined) {
-    arrayByUUID.Stage = STAGES[2];
-  }
-  arrayByUUID.Cards.forEach(element => {
-    element.stage = arrayByUUID.Stage;
-  });
-}
-
-function updateInArray(array, UUID, id, updatedItem){
-  // Возможно найдется баг при обновлении карточки
-  let elementId = array.findIndex((item => item.id == id && item.UUID == UUID));
-  array[elementId] = updatedItem;
-}
 
 class Card{
   constructor(card){
@@ -69,7 +48,10 @@ class Card{
 
     // Левая часть
     let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
-    let previewImg = document.createElement("img"); previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : this.ScreenPreview);
+
+    let previewImg = document.createElement("img"); 
+    previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : this.ScreenPreview);
+
     leftSide.appendChild(previewImg);
 
     // Отображение статуса
@@ -80,12 +62,21 @@ class Card{
 
     let messageIcon = null;
 
-    function createContextByStatus(className, text, messageIconPath){
+    let request = null;
+
+    let temp_ID = this.id;
+    let temp_UUID = this.UUID;
+    function createContextByStatus(className, text, messageIconPath, requestText){
       status = document.createElement("div"); status.classList.add(className);
       message = document.createElement("p"); message.textContent = text;
       status.appendChild(message);
       messageIcon = document.createElement("img"); messageIcon.setAttribute("src", messageIconPath);
       status.appendChild(messageIcon);
+      request = document.createElement("a");
+      request.textContent = requestText;
+      request.classList.add('none')
+      request.addEventListener('click', () => { retry(temp_ID, temp_UUID); display()})
+      status.appendChild(request)
     }
 
     switch (this.status.toUpperCase()) {
@@ -97,12 +88,12 @@ class Card{
         createContextByStatus("card-state", "", "");
         break;
 
-      case 'inprogress':
-        createContextByStatus("animation--card-state", "В обработке", "../src/icons/loading.svg");
+      case 'IN_PROGRESS':
+        createContextByStatus("animation--card-state", "В обработке", "../src/icons/informative/loading.svg");
         break;
 
       default: //ERROR
-        createContextByStatus("card-state", "Ошибка", "../src/icons/red-cross.svg");        
+        createContextByStatus("card-state", "Не удалось отрисовать", "../src/icons/informative/sad-failed.svg", "Попробовать еще раз");
         break;
     }
     
@@ -186,6 +177,34 @@ class Card{
 }
 
 
+function CheckForStage(arrayByUUID){
+
+  arrayByUUID.Stage = STAGES[0];
+  if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
+    arrayByUUID.Stage = STAGES[1];
+  }
+  if (arrayByUUID.Cards.find((item => item['readyToShowDiff'] == false)) === undefined) {
+    arrayByUUID.Stage = STAGES[2];
+  }
+  arrayByUUID.Cards.forEach(element => {
+    element.stage = arrayByUUID.Stage;
+  });
+}
+
+function updateInArray(array, UUID, id, updatedItem){
+  // Возможно найдется баг при обновлении карточки
+  let elementId = array.findIndex((item => item.id == id && item.UUID == UUID));
+  console.log(elementId);
+  array[elementId] = updatedItem;
+}
+
+function retry(id, uuid){
+  let cardAtIndex = CardsArray.findIndex((item => item.UUID == uuid))
+  CardsArray[cardAtIndex].Cards[CardsArray[cardAtIndex].Cards.findIndex((item => item.id == id))].status = 'IN_PROGRESS'
+  // sendRequestToRetry(uuid, id);
+}
+
+
 function getArrayOfSections(objectJSON){
   let newUUIDSection = { "UUID" : objectJSON.uuid, "Cards" : [], "Stage" : STAGES[0]}
   objectJSON.cards.forEach(card => {
@@ -193,8 +212,6 @@ function getArrayOfSections(objectJSON){
   });
   CardsArray.push(newUUIDSection);
 }
-
-
 
 function display(){
   // Create UUIDSections
@@ -220,17 +237,44 @@ function display(){
 });
 }
 
+// TODO
+async function sendRequestToRetry(jobUUID, taskUUID){
+  return;
+  try {
+    // PUT /rest/{task_id}/{job_id}
+
+    const response = await fetch(``, {
+      method: 'PUT',
+      headers: {
+        accept: 'application/json',
+      }
+    });
+
+    
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    getArrayOfSections(result);
+    display();
+    return result;
+
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 async function getCards() {
   try {
     // ../scripts/test.json
     // http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data
-    const response = await fetch('http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data', {
+    const response = await fetch(`../scripts/test.json`, {
       method: 'GET',
+      // mode: 'no-cors',
       headers: {
         accept: 'application/json',
-      },
-      credentials: 'same-origin'
+      }
     });
 
     

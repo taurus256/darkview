@@ -118,13 +118,14 @@ header > .dash {
     height: 215px;
 }
 
-.wrapper-small{
-    margin-top: 40px;
+/* Для уменьшенных хедеров */
+body.small > header > .wrapper{
+    margin-top: 50px;
     margin-bottom: 20px;
     padding: 0px 144px 0px 144px;
+    height: fit-content;
     align-items: center;
 }
-
 
 .nav--left-side > img{
     width: 400px;
@@ -696,6 +697,10 @@ footer{
     height: 300px;
 }
 
+.render-card--state-display--left > img{
+    width: 300px;
+    height: 300px;
+}
 
 .render-card--state-display--right{
     display: flex;
@@ -719,20 +724,38 @@ footer{
     align-items: center;
     gap: 20px;
     position: relative;
-    top: -70%;
+    top: -80%;
     left: 0%;
     text-align: center;
 }
 
 .animation--card-state > p, .card-state > p{
     text-align: center;
-    width: 300px;
+    width: 200px;
 }
 
 .animation--card-state > img, .card-state > img{
     width: 45px;
 }
 
+.animation--card-state > a, .card-state > a{
+    color: var(--color-card-primary);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.64px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.animation--card-state > a:hover, .card-state > a:hover{
+    transition: 100ms;
+    color: var(--color-white);
+}
 
 /* Results.html */
 

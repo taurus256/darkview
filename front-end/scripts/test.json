@@ -23,6 +23,32 @@
             },
             "os": "WIN",
             "browser": "EDGE"
+        },
+        {
+            "status": "IN_PROGRESS",
+            "id": 632,
+            "uuid": "eb65d305-b87b-4290-ae51-42934ba378e9",
+            "links": {
+                "diffPreview": "/eb65d305-b87b-4290-",
+                "screenFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/show",
+                "diffFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/diff/show",
+                "screenPreview": ""
+            },
+            "os": "LIN",
+            "browser": "firefox"
+        },
+        {
+            "status": "ERROR",
+            "id": 635,
+            "uuid": "eb65d305-b87b-4290-ae51-42934ba378e321",
+            "links": {
+                "diffPreview": "/eb65d305-b87b-4290-",
+                "screenFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/show",
+                "diffFull": "/eb65d305-b87b-4290-ae51-42934ba378e9/diff/show",
+                "screenPreview": ""
+            },
+            "os": "IOS",
+            "browser": "safari"
         }
     ],
     "uuid": "accd8c15-bd68-4ec5-9ac3-1ecd6adfda22"
