@@ -50,7 +50,10 @@ class Card{
     let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
 
     let previewImg = document.createElement("img"); 
-    previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : this.ScreenPreview);
+    previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : 'http://45.12.19.194:8081/job' + this.ScreenPreview);
+    let previewUrl = 'http://45.12.19.194:8081/job'
+
+    previewImg.addEventListener('click', () => {window.open(`${previewUrl}${this.ScreenFullLink}`, '_blank').focus();})
 
     leftSide.appendChild(previewImg);
 
@@ -104,14 +107,15 @@ class Card{
     cardMiddle.appendChild(leftSide);
 
     //Правая часть
-    if (this.diffIsShowing) {
+    let rightSide = document.createElement("div"); rightSide.classList.add("render-card--state-display--right"); 
+    if (this.status.toUpperCase() == 'PREVIEW_IS_READY') {
       
-      let rightSide = document.createElement("div"); rightSide.classList.add("render-card--state-display--right"); 
+      
       let dash = document.createElement("div"); dash.classList.add("vertical-dash");
 
       rightSide.appendChild(dash);
 
-      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", this.DiffPreview);
+      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", 'http://45.12.19.194:8081/job' + this.DiffPreview);
 
       rightSide.appendChild(diffPicture);
 
@@ -119,7 +123,7 @@ class Card{
     }
     
 
-    _card.appendChild(cardMiddle)
+    
 
 
     let cardBottom = document.createElement("div"); 
@@ -150,7 +154,7 @@ class Card{
       cardBottom.appendChild(labelForRadio);
     }
 
-    if (this.stage == STAGES[2]) {
+    if (this.DiffPreview != '' && this.DiffPreview != undefined) {
       // Checkbox для демонстрации сравнения
       let showDiffCheckbox = document.createElement("input"); 
       showDiffCheckbox.setAttribute("type", "checkbox"); 
@@ -165,11 +169,14 @@ class Card{
 
       let innerLabel = document.createElement("p");
       innerLabel.textContent = this.diffIsShowing ?  "Свернуть сравнение <" : "Развернуть сравнение >"
+      this.diffIsShowing ? _card.className = 'render-card--big' : 'render-card';
+      this.diffIsShowing ? rightSide.classList.remove('hidden') : rightSide.classList.add('hidden')
 
       labelForCheckbox.appendChild(innerLabel)
       cardBottom.appendChild(labelForCheckbox);
     }
     
+    _card.appendChild(cardMiddle);
     _card.appendChild(cardBottom);
 
     rootNode.appendChild(_card);
@@ -183,12 +190,14 @@ function CheckForStage(arrayByUUID){
   if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
     arrayByUUID.Stage = STAGES[1];
   }
-  if (arrayByUUID.Cards.find((item => item['readyToShowDiff'] == false)) === undefined) {
+  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)) >= 0) {
     arrayByUUID.Stage = STAGES[2];
   }
+  console.log(arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == false)));
   arrayByUUID.Cards.forEach(element => {
     element.stage = arrayByUUID.Stage;
   });
+  console.log(arrayByUUID.Stage);
 }
 
 function updateInArray(array, UUID, id, updatedItem){
@@ -216,6 +225,7 @@ function getArrayOfSections(objectJSON){
 function display(){
   // Create UUIDSections
   let rootNode = document.getElementById("cards--section");
+  rootNode.innerHTML = '';
   CardsArray.forEach(element => {
 
     CheckForStage(CardsArray.find((item => item.UUID == element.UUID)))
@@ -267,11 +277,11 @@ async function sendRequestToRetry(jobUUID, taskUUID){
 
 async function getCards() {
   try {
-    // ../scripts/test.json
-    // http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data
-    const response = await fetch(`../scripts/test.json`, {
+    let local =  '../scripts/test.json'
+    let testOnline = 'http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data'
+    const response = await fetch(`${testOnline}`, {
       method: 'GET',
-      // mode: 'no-cors',
+      mode: 'cors',
       headers: {
         accept: 'application/json',
       }
@@ -283,6 +293,8 @@ async function getCards() {
     }
 
     const result = await response.json();
+    console.log('Log trace: 290');
+    console.log(result);
     getArrayOfSections(result);
     display();
     return result;
