@@ -24,8 +24,9 @@
 
 
 html{
-    background-color: black;
+    /* background-color: black; */
     width: 100%;
+    background: var(--color-dark-blue);
 }
 
 body{
@@ -964,3 +965,131 @@ footer{
     border-radius: 10px;
     background: var(--color-blue);
 }
+
+/* Registration */
+#register-form{
+    display: flex;
+    justify-content: space-between;
+    /* width: calc(100% - (144px*2)); */
+    gap: 100px;
+    margin-top: 37px;
+    margin-bottom: 100px;
+}
+
+.left--fields{
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+.left--fields > .button-huge{
+    margin-top: 20px;
+    width: 505px;
+}
+
+.small-input{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.register-input{
+    height: 75px;
+    width: auto;
+    min-width: 700px;
+    border-radius: 10px;
+    background: var(--color-input-blue);
+    color: var(--color-white);
+    padding: 0 0 0 24px;
+
+    border: none;
+
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.2px;
+}
+
+.backboard--registration{
+    width: 726px;
+    margin-top: 34px;
+    /* width: 100%; */
+    height: fit-content;
+    background: var(--color-backboard);
+    padding: 35px 40px;
+    border-radius: 10px;
+    margin-bottom: 65px;
+    gap: 54px;
+}
+
+.backboard--registration > p{
+    color: #FFF;
+
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.96px;
+}
+
+.backboard--registration > div{
+    display: flex;
+    flex-direction: row;
+    gap: 38px;
+    align-items: center;
+}
+
+.register-check > input{
+    color: #FFF;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+}
+
+.register-check > label{
+    color: #FFF;
+
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    display: flex;
+}
+
+.register-check > label > span > a{
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+
+.register-check > label > span > a:hover{
+    color: var(--color-dark-blue);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+
+.register-check > label > span > a:visited{
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+/* Registration end */
