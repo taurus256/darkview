@@ -121,7 +121,7 @@ header > .dash {
 
 /* Для уменьшенных хедеров */
 body.small > header > .wrapper{
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 20px;
     padding: 0px 144px 0px 144px;
     height: fit-content;
@@ -1024,7 +1024,7 @@ footer{
 }
 
 .backboard--registration > p{
-    color: #FFF;
+    color: var(--color-white);
 
     font-family: Inter;
     font-size: 24px;
@@ -1042,14 +1042,14 @@ footer{
 }
 
 .register-check > input{
-    color: #FFF;
+    color: var(--color-white);
     width: 25px;
     height: 25px;
     flex-shrink: 0;
 }
 
 .register-check > label{
-    color: #FFF;
+    color: var(--color-white);
 
     font-family: Inter;
     font-size: 24px;
@@ -1093,3 +1093,173 @@ footer{
     text-decoration-line: underline;
 }
 /* Registration end */
+
+
+/* Profile */
+.subscription--offer{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 288px);
+    gap: 62px;
+}
+
+.subscription--offer > h6{
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.12px;
+}
+
+.subscription--offer > .button-huge{
+    height: 85px;
+    width: 640px;
+
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.88px;
+    text-transform: uppercase;
+}
+
+.done-tasks{
+    margin-top: 57px;
+    width: calc(100% - 288px);
+}
+
+.task-grid{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.task-details--line{
+    padding: 20px;
+    padding-right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-details--line > .task--right{
+    gap: 180px;
+}
+
+.task-details--line > .task--right > .flex{
+    gap: 86px;
+}
+
+.task--container{
+    display: flex;
+    flex-direction: column;
+}
+
+.task{
+    border: solid 1px var(--color-white);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task--right{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.task--right > a{
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+
+.task--right > a:hover{
+    color: var(--color-dark-blue);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+
+.task--right > a:visited{
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-decoration-line: underline;
+}
+
+.show-more-tasks{
+    margin-top: 30px;
+    margin-bottom: 48px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.show-more-tasks > img{
+    width: 22px;
+    height: 22px;
+}
+
+.profile-options{
+    margin-top: 48px;
+    width: calc(100% - 288px);
+}
+
+.profile-options--container{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 66px;
+    margin-bottom: 90px;
+}
+
+.profile-options--container > div > .button-huge{
+    width: 423px;
+    height: 75px;
+}
+
+.profile-option{
+    display: flex;
+    align-items: center;
+    gap: 75px;
+}
+
+.profile-option > button.button-huge{
+    color: var(--color-white);
+    text-transform: none;
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.2px;
+}
+
+.button-huge.button-red{
+    background-color: var(--color-button-red);
+}
+
+
+/* Profile end */
