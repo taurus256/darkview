@@ -1263,3 +1263,114 @@ footer{
 
 
 /* Profile end */
+
+/* 404 */
+.not-found-main{
+    min-height: 900px;
+    height: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+
+.not-found-main > h1 {
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 300px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: 12px;
+}
+
+.not-found-main > div{
+    gap: 54px;
+}
+
+.not-found-main > div > h6{
+    width: 610px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.not-found-main > div > button{
+    width: 465px;
+}
+/* 404 end */
+
+/* documentation */
+
+.document--full{
+    display: flex;
+    flex-direction: column;
+    /* gap: 70px; */
+}
+
+.document--full > h1{
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.6px;
+
+    margin-bottom: 35px;
+}
+
+.document--full > h3{
+    margin: 0px;
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.6px;
+
+    margin-bottom: 53px;
+}
+
+.document--full > p{
+    color: var(--color-white);
+
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+
+    margin-bottom: 70px;
+}
+
+.document--full > ol{
+    margin: 0px;
+    padding-left: 48px;
+    list-style: decimal;
+    
+}
+
+.document--full > ol > li{
+    list-style: decimal;
+    color: var(--color-white);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+
+    margin-bottom: 50px;
+}
+
+
+
+/* documentation end */
