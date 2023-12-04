@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../styles/style.css">
     <title>DarkView/Screenshot</title>
 </head>
-<body class="column center">
+<body class="column center small">
     
     <script src="../scripts/components/header.js"></script>
 
@@ -18,9 +18,81 @@
         
 
         <section class="settings column center">
-            <div class="browser--settings-wrapper">
-                <h6><b>Выберите браузеры</b></h6>
-                <div class="backboard"></div>
+            <h6><b>Выберите браузеры</b></h6>
+            <div class="backboard">
+                <div class="system-option-selection">
+                    <div class="flex">
+                        <img src="../src/icons/systems/WIN.png" alt="IOS" srcset="">
+                        <h6>Windows</h6>
+                    </div>
+                    <div class="column">
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="edge" id="" class="">
+                            <label for="edge" class="checkbox-label">EDGE</label>
+                        </div>
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="firefox" id="" class="">
+                            <label for="firefox" class="checkbox-label">firefox</label>
+                        </div>
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="chrome" id="" class="">
+                            <label for="chrome" class="checkbox-label">chrome</label>
+                        </div>
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="opera" id="" class="">
+                            <label for="opera" class="checkbox-label">opera</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid-dash"></div>
+                <div class="system-option-selection">
+                    <div class="flex">
+                        <img src="../src/icons/systems/LIN.png" alt="IOS" srcset="">
+                        <h6>Linux</h6>
+                    </div>
+                    <div class="column">
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="firefox" id="" class="">
+                            <label for="firefox" class="checkbox-label">firefox</label>
+                        </div>
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="chrome" id="" class="">
+                            <label for="chrome" class="checkbox-label">chrome</label>
+                        </div>
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="opera" id="" class="">
+                            <label for="opera" class="checkbox-label">opera</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-dash"></div>
+                <div class="system-option-selection">
+                    <div class="flex">
+                        <img src="../src/icons/systems/MAC.png" alt="IOS" srcset="">
+                        <h6>MacOS</h6>
+                    </div>
+                    <div class="column">
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="safari" id="" class="">
+                            <label for="safari" class="checkbox-label">safari</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-dash"></div>
+                <div class="system-option-selection">
+                    <div class="flex">
+                        <img src="../src/icons/systems/IOS.png" alt="IOS" srcset="">
+                        <h6>iOS</h6>
+                        <img src="../src/icons/info.svg" alt="?" srcset="">
+                    </div>
+                    <div class="column">
+                        <div class="flex browser-checkbox">
+                            <input type="checkbox" name="safari" id="" class="">
+                            <label for="safari" class="checkbox-label">safari</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="button" class="button-huge">Создать Скриншот</button>
         </section>

@@ -938,11 +938,20 @@ footer{
 
 .backboard{
     margin-top: 34px;
-    width: 100%;
+    width: calc(100% - 62px);
     height: 440px;
     background: var(--color-card-primary);
     border-radius: 10px;
     margin-bottom: 65px;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 32px 50px; */
+    padding: 0px 32px 0px 32px;
+}
+
+.backboard > .grid-dash{
+    margin-top: 24px;
+    height: calc(100% - 48px);
 }
 
 .button-huge{
@@ -965,6 +974,70 @@ footer{
     border-radius: 10px;
     background: var(--color-blue);
 }
+
+.system-option-selection{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    /* max-width: fit-content; */
+    width: 235px;
+    /* min-width: 300px; */
+}
+
+.system-option-selection > div{
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 72px;
+}
+
+.system-option-selection > .flex{
+    justify-content: flex-start;
+}
+
+.system-option-selection > .column{
+    align-items: flex-start;
+}
+
+.system-option-selection > div > img{
+    width: 45px;
+    height: 45px;
+}
+
+.system-option-selection > div > h6{
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.12px;
+    margin-right: 40px;
+    /* text-transform: uppercase; */
+}
+
+.browser-checkbox{
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.browser-checkbox > input{
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.browser-checkbox > .checkbox-label{
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+}
+
 
 /* Registration */
 #register-form{
