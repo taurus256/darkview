@@ -13,11 +13,29 @@
     let widthSpan = document.createElement('span')
     widthSpan.id = 'widthSpan'
     widthSpan.textContent = widthArray[0]
+
+    let tooltipContainer = document.createElement('div')
+    tooltipContainer.classList.add('container-info')
+
+    
+
     let info = document.createElement('img')
     info.setAttribute('src', '../src/icons/info.svg')
+    info.classList.add('img-info')
+    // <div class="popup-info-msg" id="popup-info-msg-2"> Ширину выбрать нельзя - она фиксирована</div>
+
+    let tooltip = document.createElement('div')
+    tooltip.classList.add('popup-info-msg')
+    tooltip.textContent = 'Выберите ширину'
+    tooltip.id = 'popup-info-msg-1'
+
+    tooltipContainer.appendChild(info)
+    tooltipContainer.appendChild(tooltip)
+    
     wrapper.appendChild(triangle)
     wrapper.appendChild(widthSpan)
-    wrapper.appendChild(info)
+    wrapper.appendChild(tooltipContainer)
+    
     dropDown.appendChild(wrapper)
     let dropMenu = document.createElement("div")
     dropMenu.classList.add("dropdown-content")

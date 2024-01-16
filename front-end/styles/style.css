@@ -21,7 +21,9 @@
     url(../src/fonts/Jost/Jost-Thin.ttf) format('truetype');
 } */
 
-
+/* *{
+    border: solid 1px red;
+} */
 
 html{
     /* background-color: black; */
@@ -938,20 +940,11 @@ footer{
 
 .backboard{
     margin-top: 34px;
-    width: calc(100% - 62px);
+    width: 100%;
     height: 440px;
     background: var(--color-card-primary);
     border-radius: 10px;
     margin-bottom: 65px;
-    display: flex;
-    justify-content: space-between;
-    /* padding: 32px 50px; */
-    padding: 0px 32px 0px 32px;
-}
-
-.backboard > .grid-dash{
-    margin-top: 24px;
-    height: calc(100% - 48px);
 }
 
 .button-huge{
@@ -974,70 +967,6 @@ footer{
     border-radius: 10px;
     background: var(--color-blue);
 }
-
-.system-option-selection{
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    /* max-width: fit-content; */
-    width: 235px;
-    /* min-width: 300px; */
-}
-
-.system-option-selection > div{
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 72px;
-}
-
-.system-option-selection > .flex{
-    justify-content: flex-start;
-}
-
-.system-option-selection > .column{
-    align-items: flex-start;
-}
-
-.system-option-selection > div > img{
-    width: 45px;
-    height: 45px;
-}
-
-.system-option-selection > div > h6{
-    font-family: Inter;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1.12px;
-    margin-right: 40px;
-    /* text-transform: uppercase; */
-}
-
-.browser-checkbox{
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-}
-
-.browser-checkbox > input{
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-}
-
-.browser-checkbox > .checkbox-label{
-    color: var(--color-white);
-    font-family: Jost;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.96px;
-    text-transform: uppercase;
-}
-
 
 /* Registration */
 #register-form{
@@ -1337,113 +1266,157 @@ footer{
 
 /* Profile end */
 
-/* 404 */
-.not-found-main{
-    min-height: 900px;
-    height: 900px;
-    width: 100%;
+/* PARAMS.html */
+
+/* При media запросах стоит сделать сетку 2x2 через врап с бордерами (?) */
+.backboard-big {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 300px;
+    flex-wrap: nowrap;
+    width: fit-content;
+    max-width: fit-content;
+    min-width: fit-content;
+    margin-top: 34px;
+    padding-top:32px;
+    padding-bottom: 27px;
+    height: fit-content;
+    background: var(--color-card-primary);
+    border-radius: 10px;
+    margin-bottom: 65px;
 }
-
-.not-found-main > h1 {
-    color: var(--color-white);
-    font-family: Jost;
-    font-size: 300px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    letter-spacing: 12px;
-}
-
-.not-found-main > div{
-    gap: 54px;
-}
-
-.not-found-main > div > h6{
-    width: 610px;
-    text-align: center;
-    font-family: Inter;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.not-found-main > div > button{
-    width: 465px;
-}
-/* 404 end */
-
-/* documentation */
-
-.document--full{
+.os-card {
     display: flex;
     flex-direction: column;
-    /* gap: 70px; */
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 300px;
+    padding: 0;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 26px;
+    border-radius: 0;
+    border-right: 2px solid #63728b;
+    height: auto;
+    max-height: fit-content;
+    min-height: fit-content;
 }
-
-.document--full > h1{
-    color: var(--color-white);
-    font-family: Jost;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1.6px;
-
-    margin-bottom: 35px;
+.os-card:last-child {
+    border: 0;
 }
-
-.document--full > h3{
-    margin: 0px;
-    color: var(--color-white);
-    font-family: Jost;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1.6px;
-
-    margin-bottom: 53px;
+.os-card .render-card--top {
+    justify-content: left;
+    padding: 0;
 }
-
-.document--full > p{
-    color: var(--color-white);
-
-    font-family: Inter;
+.render-card--select-browser {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.render-card--select-browser label.render-chkbx,
+.render-card--select-browser label.render-chkbx::after,
+.render-card--select-browser label.render-chkbx::before {
+    box-sizing: border-box;
+}
+.render-card--select-browser label.render-chkbx *,
+.render-card--select-browser label.render-chkbx *::after,
+.render-card--select-browser label.render-chkbx *::before {
+    box-sizing: border-box;
+}
+.render-card--select-browser label.render-chkbx {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px; /* Так как .chkbx-mark имеет position: absolute; оставляем для него свободное место */
+    cursor: pointer;
+    user-select: none;
+    margin-top: 41px;
+}
+.render-card--select-browser label.render-chkbx input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/* Если input отмечен(:checked), то .chkbx-mark (область отметки), применяет данные стили */
+.render-card--select-browser label.render-chkbx input:checked ~ .chkbx-mark {
+    background-color: #496DB4;
+}
+/* При наведении(:hover) на всю область checkbox элемент .chkbx-mark (область отметки) применяет данные стили*/
+.render-card--select-browser label.render-chkbx:hover input ~ .chkbx-mark {
+    background-color: #5f8ee9;
+}
+/* При наведении(:hover) на всю область checkbox и при отмеченном input  элемент .chkbx-mark (область отметки) применяет данные стили*/
+.render-card--select-browser label.render-chkbx:hover input:checked ~ .chkbx-mark {
+    background-color: #324d81;
+}
+/* Исходные стили для области отметки .chkbx-mark */
+.render-card--select-browser label.render-chkbx .chkbx-mark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #273752;
+    border: 3px solid #273752;
+    transition: background-color 0.25s ease;
+}
+.render-card--select-browser label.render-chkbx .chkbx-txt {
+    color: white;
+    line-height: 1.4;
     font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.96px;
-
-    margin-bottom: 70px;
-}
-
-.document--full > ol{
-    margin: 0px;
-    padding-left: 48px;
-    list-style: decimal;
-    
-}
-
-.document--full > ol > li{
-    list-style: decimal;
-    color: var(--color-white);
     font-family: Inter;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.96px;
-
-    margin-bottom: 50px;
+    text-transform: uppercase;
+    margin-left: 22px;
+}
+/* POP-UP INFO MESSAGE */
+.container-info {
+    position: relative;
+    display: inline-block;
+}
+.img-info {
+    display: block;
+    width: 35px;
 }
 
+.container-info:hover > .popup-info-msg{
+    visibility: visible;
+}
 
+.popup-info-msg {
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    right: 0%;
+    margin-left: -60px;
 
-/* documentation end */
+    background-color: #8B97FF94;
+    border-radius: 10px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: fit-content;
+    max-width: 434px;
+    min-width: fit-content;
+    color: #243D66;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 58;
+    visibility: hidden;
+}
+
+#popup-info-msg-1{
+    width: 170px;
+    z-index: 2;
+}
+
+#popup-info-msg-2{
+    width: 400px;
+}
+
+/*PARAMS>.html end */
+
