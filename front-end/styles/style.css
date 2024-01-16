@@ -69,6 +69,16 @@ h2{
     letter-spacing: 1.6px;
 }
 
+h3{
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.2px;
+}
+
 h5{
     color: var(--color-white);
     padding: 0px;
@@ -969,6 +979,8 @@ footer{
 }
 
 /* Registration */
+
+/* Возможно добавить красную обводку при фокусе на путсое поле */
 #register-form{
     display: flex;
     justify-content: space-between;
@@ -1539,4 +1551,30 @@ footer{
     width: 400px;
 }
 
-/*PARAMS>.html end */
+/* PARAMS.html end */
+
+/* Offer document */
+
+.document--full{
+/* null */
+}
+
+.document--full > ol{
+    list-style:lower-roman;
+    counter-reset: item;
+}
+
+.document--full > ol > li{
+    list-style:decimal;
+    padding: 0px;
+    margin: 0px;
+    color: var(--color-white);
+    font-family: Jost;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+/* Offer document end */
