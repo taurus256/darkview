@@ -1578,3 +1578,46 @@ footer{
 }
 
 /* Offer document end */
+
+/* 404 */
+
+.not-found-main{
+    height: 100%;
+    min-height: 600px;
+    justify-content: space-around;
+}
+
+.not-found-main > h1{
+    color: var(--color-white);
+
+    font-family: Jost;
+    font-size: 300px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: 12px;
+}
+
+.right-side-404{
+    width: 600px;
+    text-align: center;
+    gap: 75px;
+}
+
+.right-side-404 > .button-huge {
+    width: 405px;
+    height: 85px;
+    flex-shrink: 0;
+    color: #FFF;
+
+    text-align: center;
+    font-family: Jost;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* 404 end */
