@@ -1050,19 +1050,64 @@ footer{
     flex-shrink: 0;
 }
 
-.register-check > label{
-    color: var(--color-white);
-
-    font-family: Inter;
+.backboard--registration label.render-chkbx,
+.backboard--registration label.render-chkbx::after,
+.backboard--registration label.render-chkbx::before {
+    box-sizing: border-box;
+}
+.backboard--registration label.render-chkbx *,
+.backboard--registration label.render-chkbx *::after,
+.backboard--registration label.render-chkbx *::before {
+    box-sizing: border-box;
+}
+.backboard--registration label.render-chkbx {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px; /* Так как .chkbx-mark имеет position: absolute; оставляем для него свободное место */
+    cursor: pointer;
+    user-select: none;
+    margin-top: 41px;
+}
+.backboard--registration label.render-chkbx input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/* Если input отмечен(:checked), то .chkbx-mark (область отметки), применяет данные стили */
+.backboard--registration label.render-chkbx input:checked ~ .chkbx-mark {
+    background-color: #496DB4;
+}
+/* При наведении(:hover) на всю область checkbox элемент .chkbx-mark (область отметки) применяет данные стили*/
+.backboard--registration label.render-chkbx:hover input ~ .chkbx-mark {
+    background-color: #5f8ee9;
+}
+/* При наведении(:hover) на всю область checkbox и при отмеченном input  элемент .chkbx-mark (область отметки) применяет данные стили*/
+.backboard--registration label.render-chkbx:hover input:checked ~ .chkbx-mark {
+    background-color: #324d81;
+}
+/* Исходные стили для области отметки .chkbx-mark */
+.backboard--registration label.render-chkbx .chkbx-mark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #273752;
+    border: 3px solid #273752;
+    transition: background-color 0.25s ease;
+}
+.backboard--registration label.render-chkbx .chkbx-txt {
+    color: white;
+    line-height: 1.4;
     font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.96px;
-    display: flex;
+    font-family: Inter;
+    text-transform: uppercase;
+    margin-left: 22px;
 }
 
-.register-check > label > span > a{
+.chkbx-txt > span > a{
     color: var(--color-white);
     font-family: Inter;
     font-size: 24px;
@@ -1073,7 +1118,7 @@ footer{
     text-decoration-line: underline;
 }
 
-.register-check > label > span > a:hover{
+.chkbx-txt > span > a:hover{
     color: var(--color-dark-blue);
     font-family: Inter;
     font-size: 24px;
@@ -1084,7 +1129,7 @@ footer{
     text-decoration-line: underline;
 }
 
-.register-check > label > span > a:visited{
+.chkbx-txt > span > a:visited{
     color: var(--color-white);
     font-family: Inter;
     font-size: 24px;
@@ -1094,6 +1139,7 @@ footer{
     letter-spacing: 0.96px;
     text-decoration-line: underline;
 }
+
 /* Registration end */
 
 
@@ -1445,6 +1491,7 @@ footer{
     text-transform: uppercase;
     margin-left: 22px;
 }
+
 /* POP-UP INFO MESSAGE */
 .container-info {
     position: relative;
@@ -1493,4 +1540,3 @@ footer{
 }
 
 /*PARAMS>.html end */
-

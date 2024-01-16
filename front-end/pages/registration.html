@@ -36,15 +36,17 @@
                 <div class="backboard--registration column">
                     <p>Тут будет текст, объясняющий условия договоров и лицензий простым языком, пока он не придуман, но будет обязательно</p>
 
-                    <div class="register-check">
-                        <input type="checkbox" name="offer-check" id="" required="true">
-                        <label for="offer-check"><span>Соглашаюсь <a href="#">с условиями предоставления услуг (договором-офертой)</a></span></label>
-                    </div>
-                    
-                    <div class="register-check">
-                        <input type="checkbox" name="personal-check" id="" required="true">
-                        <label for="personal-check"><span>Соглашаюсь с <a href="#">политикой обработки персональных данных</a></span></label>
-                    </div>
+                    <label class="render-chkbx" id="win-edge">
+                        <input id="offer-input" type="checkbox">
+                        <div class="chkbx-mark"></div>
+                        <div class="chkbx-txt"><span>Соглашаюсь <a href="#">с условиями предоставления услуг (договором-офертой)</a></span></div>
+                    </label>
+
+                    <label class="render-chkbx" id="win-edge">
+                        <input id="policy-input" type="checkbox">
+                        <div class="chkbx-mark"></div>
+                        <div class="chkbx-txt"><span>Соглашаюсь с <a href="#">политикой обработки персональных данных</a></span></div>
+                    </label>
                 </div>
             </div>
         </form>
