@@ -50,8 +50,8 @@ class Card{
     let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
 
     let previewImg = document.createElement("img"); 
-    previewImg.setAttribute("src", this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : 'http://45.12.19.194:8081/job' + this.ScreenPreview);
-    let previewUrl = 'http://45.12.19.194:8081/job'
+    previewImg.setAttribute("src", this.ScreenPreview===undefined || this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : '/job' + this.ScreenPreview);
+    let previewUrl = '/job'
 
     previewImg.addEventListener('click', () => {window.open(`${previewUrl}${this.ScreenFullLink}`, '_blank').focus();})
 
@@ -83,6 +83,9 @@ class Card{
     }
 
     switch (this.status.toUpperCase()) {
+      case 'CREATED':
+        createContextByStatus("card-state", "Задание в очереди", "", "");
+        break;
       case 'SUCCESS':
         createContextByStatus("card-state", "", "");
         break;
@@ -115,7 +118,7 @@ class Card{
 
       rightSide.appendChild(dash);
 
-      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", 'http://45.12.19.194:8081/job' + this.DiffPreview);
+      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", '/job' + this.DiffPreview);
 
       rightSide.appendChild(diffPicture);
 
@@ -277,8 +280,9 @@ async function sendRequestToRetry(jobUUID, taskUUID){
 
 async function getCards() {
   try {
-    let local =  '../scripts/test.json'
-    let testOnline = 'http://45.12.19.194:8081/rest/v2/accd8c15-bd68-4ec5-9ac3-1ecd6adfda22/data'
+    let local =  '../scripts/test.json';
+    let taskUUID = window.location.href.substring(window.location.href.lastIndexOf('/')+1, window.location.href.indexOf('?'));
+    let testOnline = '/rest/v2/' + taskUUID + '/data';
     const response = await fetch(`${testOnline}`, {
       method: 'GET',
       mode: 'cors',
