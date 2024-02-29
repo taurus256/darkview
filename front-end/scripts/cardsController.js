@@ -119,15 +119,12 @@ class Card{
       rightSide.appendChild(dash);
 
       let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", '/job' + this.DiffPreview);
+      diffPicture.addEventListener('click', () => {window.open(`${previewUrl}${this.DiffFullLink}`, '_blank').focus();})
 
       rightSide.appendChild(diffPicture);
 
       cardMiddle.appendChild(rightSide);
     }
-    
-
-    
-
 
     let cardBottom = document.createElement("div"); 
       cardBottom.classList.add("render-card--bottom");
@@ -137,7 +134,6 @@ class Card{
     // TODO Улучшить читаемость кода
     // Конец карточки
     if(this.stage == STAGES[1]){
-      
 
       // Radio для выбора образца 
       let radioAsExample = document.createElement("input"); 
@@ -152,7 +148,6 @@ class Card{
 
       labelForRadio.appendChild(innerlabelForRadio)
       
-
       cardBottom.appendChild(radioAsExample);
       cardBottom.appendChild(labelForRadio);
     }
@@ -186,14 +181,13 @@ class Card{
   }
 }
 
-
 function CheckForStage(arrayByUUID){
 
   arrayByUUID.Stage = STAGES[0];
   if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
     arrayByUUID.Stage = STAGES[1];
   }
-  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)) >= 0) {
+  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)) >= 2) {
     arrayByUUID.Stage = STAGES[2];
   }
   console.log(arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == false)));
@@ -218,6 +212,7 @@ function retry(id, uuid){
 
 
 function getArrayOfSections(objectJSON){
+  CardsArray = [];
   let newUUIDSection = { "UUID" : objectJSON.uuid, "Cards" : [], "Stage" : STAGES[0]}
   objectJSON.cards.forEach(card => {
     newUUIDSection.Cards.push(new Card({ "UUID":objectJSON.uuid, "Stage" : newUUIDSection.Stage, "id": card.uuid, "OS": card.os, "Status" : card.status, "Browser": card.browser, "LINKS":[{"ScreenPreview": card.links.screenPreview, "ScreenFullLink": card.links.screenFull, "DiffPreview": card.links.diffPreview, "DiffFullLink": card.links.diffFull}]} ));
@@ -263,7 +258,6 @@ async function sendRequestToRetry(jobUUID, taskUUID){
       }
     });
 
-    
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
@@ -280,7 +274,6 @@ async function sendRequestToRetry(jobUUID, taskUUID){
 
 async function getCards() {
   try {
-    let local =  '../scripts/test.json';
     let taskUUID = window.location.href.substring(window.location.href.lastIndexOf('/')+1, window.location.href.indexOf('?'));
     let testOnline = '/rest/v2/' + taskUUID + '/data';
     const response = await fetch(`${testOnline}`, {
@@ -291,7 +284,6 @@ async function getCards() {
       }
     });
 
-    
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
