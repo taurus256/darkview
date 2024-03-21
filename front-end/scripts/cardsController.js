@@ -139,6 +139,11 @@ class Card{
       let radioAsExample = document.createElement("input"); 
       radioAsExample.setAttribute("type", "radio"); 
       radioAsExample.setAttribute("name", "cardRadio");
+      radioAsExample.onchange = () => {
+      if (radioAsExample.checked){
+        window.popup.showButton('Нажмите кнопку "Старт" для запуска сравнения', 'Старт',
+          () => sendRequestToDiff(this.UUID, this.id));}
+      };
 
       let labelForRadio = document.createElement("label");
       labelForRadio.setAttribute("for","cardRadio");
@@ -185,16 +190,21 @@ function CheckForStage(arrayByUUID){
 
   arrayByUUID.Stage = STAGES[0];
   if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
-    arrayByUUID.Stage = STAGES[1];
+    arrayByUUID.Stage = STAGES[1];//ReadyToCreateDiff
+    this.popup.show('Выберите базовое изображение для сравнения, если хотите запустить определение различий');
+    window.clearInterval(window.cardsUpdateInterval);
   }
-  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)) >= 2) {
-    arrayByUUID.Stage = STAGES[2];
+  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)).length == arrayByUUID.Cards.length - 1) {
+    arrayByUUID.Stage = STAGES[2];//ReadyToShowDiff
+    window.popup.hide();
+    window.clearInterval(window.cardsUpdateInterval);
   }
   console.log(arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == false)));
   arrayByUUID.Cards.forEach(element => {
     element.stage = arrayByUUID.Stage;
   });
   console.log(arrayByUUID.Stage);
+  console.log(arrayByUUID);
 }
 
 function updateInArray(array, UUID, id, updatedItem){
@@ -272,6 +282,32 @@ async function sendRequestToRetry(jobUUID, taskUUID){
   }
 }
 
+async function sendRequestToDiff(taskUUID, jobUUID){
+  console.log('Запущено вычисление разницы для задачи ' + taskUUID + ' задания ' + jobUUID)
+  try {
+    // PUT /rest/{task_id}/{job_id}
+
+    const response = await fetch('/task/' + taskUUID + '/diff/' + jobUUID, {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    window.popup.show('Идет вычисление различий...');
+    window.cardsUpdateInterval = setInterval(() => getCards(), 5000);
+    return result;
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function getCards() {
   try {
     let taskUUID = window.location.href.substring(window.location.href.lastIndexOf('/')+1, window.location.href.indexOf('?'));
@@ -302,4 +338,6 @@ async function getCards() {
 
 window.onload = () => {
   getCards();
+  window.cardsUpdateInterval = setInterval(() => getCards(), 5000);
+  window.popup = new PopupMessage();
 }

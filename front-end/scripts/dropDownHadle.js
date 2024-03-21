@@ -18,8 +18,6 @@
     let tooltipContainer = document.createElement('div')
     tooltipContainer.classList.add('container-info')
 
-    
-
     let info = document.createElement('img')
     info.setAttribute('src', '../src/icons/info.svg')
     info.classList.add('img-info')
