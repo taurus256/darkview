@@ -1,12 +1,16 @@
-let CardsArray = []
 let STAGES = ['Default', 'ReadyToCreateDiff', 'ReadyToShowDiff']
+
+let TaskStage = STAGES[0]; // DEFAULT
+let CardsMap = new Map();
+let TaskUUID = '';
+let CardsToRedraw = [];
 
 class Card{
   constructor(card){
     if(card === undefined) 
     {return;}
     
-    this.UUID = card.UUID;
+    //this.UUID = card.UUID;
     this.id = card.id;
     this.OS = card.OS;
     this.status = card.Status;
@@ -17,71 +21,87 @@ class Card{
     this.DiffFullLink = card.LINKS[0].DiffFullLink;
 
     this.diffIsShowing = false;
-    this.readyToCreateDiff = this.status == 'SUCCESS';
-    this.readyToShowDiff = this.DiffPreview != undefined && this.status == 'PREVIEW_IS_READY';
+    this.readyToCreateDiff = this.status === 'SUCCESS';
+    this.readyToShowDiff = this.DiffPreview != undefined && this.status === 'PREVIEW_IS_READY';
     
     this.stage = card.Stage;
   }
 
   diffPreviewToggle(){
     this.diffIsShowing = !this.diffIsShowing;
-    updateInArray(CardsArray, this.UUID, this.id, this);
-    display()
+    updateInArray (this.id, this);
+    display();
   }
 
-  render(rootNode){
+  render (rootNode) {
     if(this.id === undefined) 
     {return null;}
 
-    let _card = document.createElement("div"); _card.className = "render-card";
-// Верхняя часть карточки
-    let cardTop = document.createElement("div"); cardTop.className = "render-card--top";
-    let osIcon = document.createElement("img"); osIcon.setAttribute("src", `../src/icons/systems/${this.OS.toUpperCase()}.png`);
-    let browserName = document.createElement("h5"); browserName.textContent = this.Browser.toUpperCase();
-    cardTop.appendChild(osIcon);
-    cardTop.appendChild(browserName);
-    _card.appendChild(cardTop);
-
-
-// Средняя часть карточки
-    let cardMiddle = document.createElement("div"); cardMiddle.classList.add("render-card--state-display");
-
-    // Левая часть
-    let leftSide = document.createElement("div"); leftSide.classList.add("render-card--state-display--left");
-
-    let previewImg = document.createElement("img"); 
-    previewImg.setAttribute("src", this.ScreenPreview===undefined || this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : '/job' + this.ScreenPreview);
-    let previewUrl = '/job'
-
-    previewImg.addEventListener('click', () => {window.open(`${previewUrl}${this.ScreenFullLink}`, '_blank').focus();})
-
-    leftSide.appendChild(previewImg);
-
-    // Отображение статуса
-
-    let status = null;
-
-    let message = null;
-
-    let messageIcon = null;
-
-    let request = null;
-
-    let temp_ID = this.id;
-    let temp_UUID = this.UUID;
-    function createContextByStatus(className, text, messageIconPath, requestText){
-      status = document.createElement("div"); status.classList.add(className);
-      message = document.createElement("p"); message.textContent = text;
-      status.appendChild(message);
-      messageIcon = document.createElement("img"); messageIcon.setAttribute("src", messageIconPath);
-      status.appendChild(messageIcon);
-      request = document.createElement("a");
-      request.textContent = requestText;
-      request.classList.add('none')
-      request.addEventListener('click', () => { retry(temp_ID, temp_UUID); display()})
-      status.appendChild(request)
+    let _card = document.getElementById(this.id);
+    let is_new_flag = false;
+    if ( _card === null ) {
+       _card = document.createElement("div");
+       _card.className = "render-card";
+       _card.setAttribute("id", this.id );
+       is_new_flag = true;
     }
 
+    //let _card = document.createElement("div"); _card.className = "render-card";
+
+    // Верхняя часть карточки
+    if ( is_new_flag ) {
+        let cardTop = document.createElement("div");
+        cardTop.className = "render-card--top";
+        let osIcon = document.createElement("img");
+        osIcon.setAttribute("src", `../src/icons/systems/${this.OS.toUpperCase()}.png`);
+        let browserName = document.createElement("h5");
+        browserName.textContent = this.Browser.toUpperCase();
+        cardTop.appendChild(osIcon);
+        cardTop.appendChild(browserName);
+        _card.appendChild(cardTop);
+    }
+
+    // Средняя часть карточки
+    let cardMiddle = null;
+    if (is_new_flag === false ) {
+      cardMiddle = _card.getElementsByClassName("render-card--state-display").item(0);
+      cardMiddle.innerHTML = '';
+    } else {
+      cardMiddle = document.createElement("div");
+      cardMiddle.classList.add("render-card--state-display");
+    }
+
+    // Левая часть
+    let leftSide = document.createElement("div");
+    leftSide.classList.add("render-card--state-display--left");
+    let previewImg = document.createElement("img"); 
+    previewImg.setAttribute("src", this.ScreenPreview===undefined || this.ScreenPreview == '' ? "../src/img/cards/placeholder.png" : '/job' + this.ScreenPreview);
+    let previewUrl = '/job';
+    previewImg.addEventListener('click', () => {window.open(`${previewUrl}${this.ScreenFullLink}`, '_blank').focus();})
+    leftSide.appendChild(previewImg);
+    
+    // Левая часть: Отображение статуса
+    let htmlStatus = null;
+    let htmlMessage = null;
+    let htmlMessageIcon = null;
+    let htmlRequest = null;
+    let curCardId = this.id;
+
+    function createContextByStatus ( className, text, messageIconPath, requestText ) {
+      htmlStatus = document.createElement("div");
+      htmlStatus.classList.add(className);
+      htmlMessage = document.createElement("p");
+      htmlMessage.textContent = text;
+      htmlStatus.appendChild ( htmlMessage );
+      htmlMessageIcon = document.createElement("img");
+      htmlMessageIcon.setAttribute ("src", messageIconPath);
+      htmlStatus.appendChild(htmlMessageIcon);
+      htmlRequest = document.createElement("a");
+      htmlRequest.textContent = requestText;
+      htmlRequest.classList.add('none');
+      htmlRequest.addEventListener('click', () => { retry ( curCardId ); display()});
+      htmlStatus.appendChild( htmlRequest );
+    }
     switch (this.status.toUpperCase()) {
       case 'CREATED':
         createContextByStatus("card-state", "Задание в очереди", "", "");
@@ -102,56 +122,66 @@ class Card{
         createContextByStatus("card-state", "Не удалось отрисовать", "../src/icons/informative/sad-failed.svg", "Попробовать еще раз");
         break;
     }
-    
-
-    leftSide.appendChild(status);
-    //Конец отображения статуса
-
+    leftSide.appendChild ( htmlStatus );
+    // Левая часть: Конец отображения статуса
     cardMiddle.appendChild(leftSide);
+    // Левая часть: конец
 
-    //Правая часть
-    let rightSide = document.createElement("div"); rightSide.classList.add("render-card--state-display--right"); 
-    if (this.status.toUpperCase() == 'PREVIEW_IS_READY') {
-      
-      
-      let dash = document.createElement("div"); dash.classList.add("vertical-dash");
-
+    // Правая часть
+    let rightSide = document.createElement("div");
+    rightSide.classList.add("render-card--state-display--right"); 
+    
+    if (this.status.toUpperCase() === 'PREVIEW_IS_READY') {
+      console.log("render id=" + this.id + ", PREVIEW_IS_READY");
+      let dash = document.createElement("div");
+      dash.classList.add("vertical-dash");
       rightSide.appendChild(dash);
 
-      let diffPicture = document.createElement("img"); diffPicture.setAttribute("src", '/job' + this.DiffPreview);
+      let diffPicture = document.createElement("img");
+      diffPicture.setAttribute("src", '/job' + this.DiffPreview);
       diffPicture.addEventListener('click', () => {window.open(`${previewUrl}${this.DiffFullLink}`, '_blank').focus();})
-
       rightSide.appendChild(diffPicture);
 
       cardMiddle.appendChild(rightSide);
     }
 
-    let cardBottom = document.createElement("div"); 
-      cardBottom.classList.add("render-card--bottom");
-      cardBottom.classList.add("flex");
-      cardBottom.classList.add("center");
+    // НИЖНЯЯ ЧАСТЬ
+    let cardBottom = null;
+    if ( is_new_flag === true ) {
+        cardBottom = document.createElement("div"); 
+        cardBottom.classList.add("render-card--bottom");
+        cardBottom.classList.add("flex");
+        cardBottom.classList.add("center");
+    } else {
+      cardBottom = _card.getElementsByClassName("render-card--bottom").item(0);
+      cardBottom.innerHTML = '';
+    }
 
-    // TODO Улучшить читаемость кода
-    // Конец карточки
-    if(this.stage == STAGES[1]){
-
-      // Radio для выбора образца 
+    // Если сравнение скриншотов ещё не происходило
+    if(this.stage == STAGES[1]) {
+      console.log("STAGE 1 for id = " + this.id )
+      // Галочка для выбора данной карточки за образец 
       let radioAsExample = document.createElement("input"); 
       radioAsExample.setAttribute("type", "radio"); 
-      radioAsExample.setAttribute("name", "cardRadio");
+      radioAsExample.setAttribute("id", "cardRadio" + this.id );
+      radioAsExample.setAttribute("name", "cardRadio" );
       radioAsExample.onchange = () => {
-      if (radioAsExample.checked){
-        window.popup.showButton('Нажмите кнопку "Старт" для запуска сравнения', 'Старт',
-          () => sendRequestToDiff(this.UUID, this.id));}
+          if (radioAsExample.checked) {
+            window.popup.showButton (
+              'Нажмите кнопку "Старт" для запуска сравнения',
+              'Старт',
+              () => sendRequestToDiff( this.id)
+              );
+          }
       };
 
       let labelForRadio = document.createElement("label");
-      labelForRadio.setAttribute("for","cardRadio");
+      labelForRadio.setAttribute("for","cardRadio" + this.id );
 
       let innerlabelForRadio = document.createElement("p");
-      innerlabelForRadio.textContent = "Образец для сравнения"
+      innerlabelForRadio.textContent = "Образец для сравнения";
 
-      labelForRadio.appendChild(innerlabelForRadio)
+      labelForRadio.appendChild(innerlabelForRadio);
       
       cardBottom.appendChild(radioAsExample);
       cardBottom.appendChild(labelForRadio);
@@ -160,15 +190,16 @@ class Card{
     if (this.DiffPreview != '' && this.DiffPreview != undefined) {
       // Checkbox для демонстрации сравнения
       let showDiffCheckbox = document.createElement("input"); 
-      showDiffCheckbox.setAttribute("type", "checkbox"); 
-      showDiffCheckbox.setAttribute("name", "diffCheckBox");
+      showDiffCheckbox.setAttribute("type", "checkbox" );
+      showDiffCheckbox.setAttribute("id", "diffCheckBox" + this.id );
+      showDiffCheckbox.setAttribute("name", "diffCheckBox" );
       showDiffCheckbox.checked = this.diffIsShowing;
       showDiffCheckbox.onchange = () => this.diffPreviewToggle();
 
       cardBottom.appendChild(showDiffCheckbox);
 
       let labelForCheckbox = document.createElement("label");
-      labelForCheckbox.setAttribute("for","diffCheckBox");
+      labelForCheckbox.setAttribute("for","diffCheckBox" + this.id);
 
       let innerLabel = document.createElement("p");
       innerLabel.textContent = this.diffIsShowing ?  "Свернуть сравнение <" : "Развернуть сравнение >"
@@ -179,80 +210,144 @@ class Card{
       cardBottom.appendChild(labelForCheckbox);
     }
     
-    _card.appendChild(cardMiddle);
-    _card.appendChild(cardBottom);
-
-    rootNode.appendChild(_card);
+    if ( is_new_flag === true ) {
+      _card.appendChild(cardMiddle);
+      _card.appendChild(cardBottom);
+      rootNode.appendChild(_card);
+    }
   }
 }
 
-function CheckForStage(arrayByUUID){
+function CheckForStage () {
+  
+  let curTaskStage = STAGES[0]; // DEFAULT
 
-  arrayByUUID.Stage = STAGES[0];
-  if (arrayByUUID.Cards.find((item => item['readyToCreateDiff'] == false)) === undefined) {
-    arrayByUUID.Stage = STAGES[1];//ReadyToCreateDiff
+  let readyToCreateDiff_flag = true;
+  let ReadyToShowDiffCards_num = 0;
+
+  CardsMap.forEach ( ( curCard, curCardId ) => {
+    if ( curCard.readyToCreateDiff == false ) {
+      readyToCreateDiff_flag = false;
+    }
+    if ( curCard.readyToShowDiff == true ) {
+      ReadyToShowDiffCards_num = ReadyToShowDiffCards_num + 1;
+    }
+  });
+
+  // Если у всех карточек установлено ReadyToCreateDiff = true,
+  // то предлагаем их сравнить (popup)
+  if ( readyToCreateDiff_flag == true ) {
+    curTaskStage = STAGES[1];//ReadyToCreateDiff
     this.popup.show('Выберите базовое изображение для сравнения, если хотите запустить определение различий');
     window.clearInterval(window.cardsUpdateInterval);
   }
-  if (arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == true)).length == arrayByUUID.Cards.length - 1) {
-    arrayByUUID.Stage = STAGES[2];//ReadyToShowDiff
+
+  // Если у всех, кроме 1, карточек есть readyToShowDiff = true
+  // то показываем различия и перестаем предлагать сравнить
+  if ( ReadyToShowDiffCards_num == CardsMap.size - 1 ) {
+    curTaskStage = STAGES[2]; //ReadyToShowDiff
     window.popup.hide();
     window.clearInterval(window.cardsUpdateInterval);
   }
-  console.log(arrayByUUID.Cards.filter((item => item['readyToShowDiff'] == false)));
-  arrayByUUID.Cards.forEach(element => {
-    element.stage = arrayByUUID.Stage;
+
+  console.log( ReadyToShowDiffCards_num );
+
+  let stage_was_changed = false;
+  if ( TaskStage !== curTaskStage ) stage_was_changed = true;
+  TaskStage = curTaskStage;
+
+  if ( stage_was_changed ) CardsToRedraw = [];
+
+  CardsMap.forEach ( (curCard, curCardId) => {
+    curCard.stage = TaskStage;
+    if ( stage_was_changed ) {
+      CardsToRedraw.push ( curCard );
+      console.log("checkForStage: add to Redraw - update, id=" + curCard.id );
+    }
   });
-  console.log(arrayByUUID.Stage);
-  console.log(arrayByUUID);
+  console.log(TaskStage);
 }
 
-function updateInArray(array, UUID, id, updatedItem){
+function updateInArray ( id, updatedItem) {
   // Возможно найдется баг при обновлении карточки
-  let elementId = array.findIndex((item => item.id == id && item.UUID == UUID));
+  let elementId = CardsMap.get(id);
+  if ( elementId === undefined ) {
+    console.log ( "updateInArray: undefined " );
+    return;
+  }
   console.log(elementId);
-  array[elementId] = updatedItem;
+  CardsMap.set(id, updatedItem);
 }
 
-function retry(id, uuid){
-  let cardAtIndex = CardsArray.findIndex((item => item.UUID == uuid))
-  CardsArray[cardAtIndex].Cards[CardsArray[cardAtIndex].Cards.findIndex((item => item.id == id))].status = 'IN_PROGRESS'
+function retry ( id ) {
+  let curCard = CardsMap.get(id);
+  curCard.status = 'IN_PROGRESS'
   // sendRequestToRetry(uuid, id);
 }
 
 
 function getArrayOfSections(objectJSON){
-  CardsArray = [];
-  let newUUIDSection = { "UUID" : objectJSON.uuid, "Cards" : [], "Stage" : STAGES[0]}
-  objectJSON.cards.forEach(card => {
-    newUUIDSection.Cards.push(new Card({ "UUID":objectJSON.uuid, "Stage" : newUUIDSection.Stage, "id": card.uuid, "OS": card.os, "Status" : card.status, "Browser": card.browser, "LINKS":[{"ScreenPreview": card.links.screenPreview, "ScreenFullLink": card.links.screenFull, "DiffPreview": card.links.diffPreview, "DiffFullLink": card.links.diffFull}]} ));
-  });
-  CardsArray.push(newUUIDSection);
+  CardsToRedraw = [];
+  objectJSON.cards.forEach(
+    card => {
+    let curCard = new Card({ /*"UUID":objectJSON.uuid,*/
+     "Stage" : STAGES[0],
+      "id": card.uuid,
+      "OS": card.os,
+      "Status" : card.status,
+      "Browser": card.browser,
+      "LINKS":[{"ScreenPreview": card.links.screenPreview,
+                "ScreenFullLink": card.links.screenFull,
+                "DiffPreview": card.links.diffPreview,
+                "DiffFullLink": card.links.diffFull}]
+    } );
+    let oldCard = CardsMap.get(curCard.id);
+    if (oldCard !== undefined ) {
+      if ( oldCard.status === curCard.status ) {
+        // не перерисовывать эту карточку
+      }
+      else {
+        CardsToRedraw.push ( curCard );
+        CardsMap.set ( curCard.id, curCard );
+        console.log("add to Redraw - update, id=" + curCard.id);
+      }
+    } else {
+      CardsToRedraw.push ( curCard );
+      CardsMap.set ( curCard.id, curCard );
+      console.log ("add to Redraw - create, id=" + curCard.id);
+    }
+    //newUUIDSection.Cards.push(new Card({ "UUID":objectJSON.uuid, "Stage" : newUUIDSection.Stage, "id": card.uuid, "OS": card.os, "Status" : card.status, "Browser": card.browser, "LINKS":[{"ScreenPreview": card.links.screenPreview, "ScreenFullLink": card.links.screenFull, "DiffPreview": card.links.diffPreview, "DiffFullLink": card.links.diffFull}]} ));
+  }); //forEach end
+  TaskUUID = objectJSON.uuid;
+  //CardsArray.push(newUUIDSection);
 }
 
-function display(){
-  // Create UUIDSections
+function display() {
+  
+  // Ищем контейнер для карточек
+  //let rootNode = document.getElementById("cards--section");
   let rootNode = document.getElementById("cards--section");
-  rootNode.innerHTML = '';
-  CardsArray.forEach(element => {
+  let newUUIDSection = document.getElementById ( TaskUUID );
+  // Опустошаем содержимое секции для карточек
+  // rootNode.innerHTML = '';
 
-    CheckForStage(CardsArray.find((item => item.UUID == element.UUID)))
 
-    let newUUIDSection = document.createElement("div");
+
+  CheckForStage ();
+
+  // Создаём пустой контейнер для вывода карточек
+  if ( newUUIDSection === null ) {
+    newUUIDSection = document.createElement("div");
     newUUIDSection.classList.add("render-card--container");
     newUUIDSection.classList.add("flex");
-    newUUIDSection.setAttribute("id", `${element.UUID}`);
+    newUUIDSection.setAttribute("id", TaskUUID);
     rootNode.appendChild(newUUIDSection);
+  }
+  // Вывод всех карточек в контейнер
+  CardsToRedraw.forEach ( ( curCard )  => {
+    console.log("render id=" + curCard.id );
+    curCard.render (newUUIDSection);
   });
-
-  // Display Cards in UUIDSections
-  CardsArray.forEach(section => {
-    let parent = document.getElementById(`${section.UUID}`);
-    parent.innerHTML = '';
-    section.Cards.forEach(card => {
-      card.render(parent);
-  });
-});
 }
 
 // TODO
@@ -282,24 +377,24 @@ async function sendRequestToRetry(jobUUID, taskUUID){
   }
 }
 
-async function sendRequestToDiff(taskUUID, jobUUID){
-  console.log('Запущено вычисление разницы для задачи ' + taskUUID + ' задания ' + jobUUID)
+async function sendRequestToDiff ( jobUUID ) {
+  console.log('Запущено вычисление разницы для задачи ' + TaskUUID + ' задания ' + jobUUID)
   try {
     // PUT /rest/{task_id}/{job_id}
 
-    const response = await fetch('/task/' + taskUUID + '/diff/' + jobUUID, {
+    const response = await fetch('/task/' + TaskUUID + '/diff/' + jobUUID, {
       method: 'POST',
       headers: {
         accept: 'application/json',
       }
     });
 
-    if (!response.ok) {
+    if ( !response.ok ) {
       throw new Error(`Error! status: ${response.status}`);
     }
 
     const result = await response.json();
-    window.popup.show('Идет вычисление различий...');
+    window.popup.show ('Идет вычисление различий...');
     window.cardsUpdateInterval = setInterval(() => getCards(), 5000);
     return result;
 
