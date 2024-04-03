@@ -1,5 +1,5 @@
 (function(){
-    const widthArray = ['1920', '1280', '1024', '768']
+    const widthArray = ['1900', '1280', '1024', '768']
     const rootNode = document.getElementById("settings-top")
     let dropDown = document.createElement('button')
     dropDown.classList.add("dropbtn")
@@ -39,7 +39,7 @@
     let dropMenu = document.createElement("div")
     dropMenu.classList.add("dropdown-content")
     dropMenu.id = 'myDropdown';
-    document.getElementById("widthSpan").value = '_1920';
+    document.getElementById("widthSpan").value = '_1900';
     widthArray.forEach(width => {
         let widthOption = document.createElement('div');
         widthOption.innerText = width
