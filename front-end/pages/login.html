@@ -8,8 +8,15 @@
 </head>
 <body class="column center small">
     <script src="../scripts/components/header.js"></script>
+    <script src="../scripts/popupMessage.js"></script>
+    <script  th:inline="javascript">
+        if (window.location.href.includes("?error")){
+            var popup = new PopupMessage();
+            popup.show("Не удалось войти в систему. Проверьте имя пользователя и пароль");
+        }
+    </script>
     <section class="column center">
-        <form action="" method="post" id="register-form" class="flex">
+        <form action="/app_login" method="post" id="register-form" class="flex">
             <div class="left--fields">
                 <div class="small-input">
                     <label for="login"><h6>Введите имя</h6></label>

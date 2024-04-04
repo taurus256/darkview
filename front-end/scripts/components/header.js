@@ -6,8 +6,8 @@
     '    <div class="nav--left-side"><img src="../src/img/DarkViewLogo.png" alt="DarkViewLogo"></div>' + 
     '    <div class="nav--right-side">' + 
     '        <ul class="sign--options flex">' + 
-    '            <li><a href=""><p>ВОЙТИ</p></a></li>' + 
-    '            <li><a href=""><p>РЕГИСТРАЦИЯ</p></a></li>' + 
+    '            <li><a href="/login"><p>ВОЙТИ</p></a></li>' +
+    '            <li><a href="/register"><p>РЕГИСТРАЦИЯ</p></a></li>' +
     '        </ul>' + 
     '    </div>' + 
     '</div>' + 

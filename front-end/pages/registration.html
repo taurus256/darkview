@@ -8,27 +8,36 @@
 </head>
 <body class="column center small">
     <script src="../scripts/components/header.js"></script>
+    <script src="../scripts/popupMessage.js"></script>
+    <script  th:inline="javascript">
+        var message = [[(${message})]];
+        if (message != null){
+            var popup = new PopupMessage();
+            popup.show(message);
+        }
+    </script>
+
     <section class="column center">
-        <form action="" method="post" id="register-form" class="flex">
+        <form method="POST" action="/api/user" modelAttribute="user" id="register-form" class="flex">
             <div class="left--fields">
                 <div class="small-input">
                     <label for="login"><h6>Введите имя</h6></label>
-                    <input type="text" name="login" class="register-input" required="true">
+                    <input type="text" name="name" class="register-input" required="true">
                 </div>
                 
                 <div class="small-input">
                     <label for="email"><h6>Введите e-mail</h6></label>
-                    <input type="email" name="email" id="" class="register-input" required="true">
+                    <input type="email" name="email" id="id_email" class="register-input" required="true">
                 </div>
                 
                 <div class="small-input">
                     <label for="password"><h6>Введите пароль</h6></label>
-                    <input type="password" name="password" id="" class="register-input" required="true">
+                    <input type="password" name="passwordString" id="id_pass_string" class="register-input" required="true">
                 </div>
 
                 <div class="small-input">
                     <label for="password-repeat"><h6>Повторите пароль</h6></label>
-                    <input type="password" name="password-repeat" id="" class="register-input" required="true">
+                    <input type="password" name="passwordRepeat" id="id_pass_repeat" class="register-input" required="true">
                 </div>
                 <button type="submit" class="button-huge">Создать аккаунт</button>
             </div>
