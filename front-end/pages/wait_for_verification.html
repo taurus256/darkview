@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Ожидание верификации e-mail</title>
+</head>
+<body class="column center small">
+    <script src="../scripts/components/header.js"></script>
+    <main>
+        <section class="document--full">
+            <h1>Пользователь создан!</h1>
+            <br>
+            <p>На указанный e-mail <b th:text="${user.getEmail()}">user@user.ru</b> отправлено письмо со ссылкой для подтверждения регистрации.</p>
+            <p>Чтобы завершить процесс, необходимо перейти по данной ссылке. Она будет действовать в течение 24 часов.</p>
+            <br>
+            <p>Если письмо не отображается во входящих сообщениях, проверьте папку "Спам" - маловероятно, но письмо могло попасть в неё</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </section>
+    </main>
+    <script src="../scripts/components/footer.js"></script>
+</body>
+</html>
