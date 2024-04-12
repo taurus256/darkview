@@ -7,7 +7,8 @@
     <title>DarkView</title>
 </head>
 <body class="column center">
-    <script src="../scripts/components/header.js"></script>
+<!--    <div th:replace="darkview/front-end/pages/fragments :: header"></div>-->
+    <div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
     <main class="column center">
         <h1 class="h1--main-header"><b>DarkView</b> — это сервис для создания<br>скриншотов сайтов  в различных браузерах
@@ -178,6 +179,7 @@
         </section>
     </main>
 
-    <script src="../scripts/components/footer.js"></script>
+<!--    <div th:replace="darkview/front-end/pages/fragments :: footer"></div>-->
+    <div th:replace="darkview/front-end/pages/fragments :: footer"></div>
 </body>
 </html>

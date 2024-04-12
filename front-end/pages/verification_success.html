@@ -7,7 +7,7 @@
     <title>Ошибка верификации e-mail</title>
 </head>
 <body class="column center small">
-    <script src="../scripts/components/header.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: header"></div>
     <main>
         <section class="document--full">
             <h1>Ваш e-mail подтвержден!</h1>
@@ -23,6 +23,6 @@
             <br>
         </section>
     </main>
-    <script src="../scripts/components/footer.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: footer"></div>
 </body>
 </html>

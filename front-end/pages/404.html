@@ -7,7 +7,7 @@
     <title>DarkView/404</title>
 </head>
 <body class="column center small">
-<script src="../scripts/components/header.js"></script>
+<div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
 <main class="not-found-main flex center">
     <h1>404</h1>
@@ -18,6 +18,6 @@
     </div>
 </main>
 <script src="../scripts/404.js"></script>
-<script src="../scripts/components/footer.js"></script>
+<div th:replace="darkview/front-end/pages/fragments :: footer"></div>
 </body>
 </html>

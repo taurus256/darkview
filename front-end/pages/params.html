@@ -8,7 +8,7 @@
 </head>
 <body class="column center">
     
-    <script src="../scripts/components/header.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
     <main class="column center">
         <form method="POST" action="/task" modelAttribute="task" class="settings column center">
@@ -121,7 +121,7 @@
         </form>
     </main>
 
-    <script src="../scripts/components/footer.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: footer"></div>
     <script src="../scripts/dropDownHadle.js"></script>
 </body>
 </html>

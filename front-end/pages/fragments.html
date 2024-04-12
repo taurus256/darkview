@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>This is fragments file</title>
+</head>
+<body>
+<header th:fragment="header">
+<div class="wrapper flex space-between">
+      <div class="nav--left-side"><img src="../src/img/DarkViewLogo.png" alt="DarkViewLogo"></div>
+      <div class="nav--right-side">
+            <ul class="sign--options flex">
+                  <li><a href="/login" th:if="${#httpServletRequest.remoteUser==null}"><p>ВОЙТИ</p></a></li>
+                  <li><a href="/register" th:if="${#httpServletRequest.remoteUser==null}"><p>РЕГИСТРАЦИЯ</p></a></li>
+                  <li><a href="/profile" th:if="${#httpServletRequest.remoteUser!=null}"><p>ПРОФИЛЬ</p></a></li>
+                  <li><a href="/logout" th:if="${#httpServletRequest.remoteUser!=null}"><p>ВЫХОД</p></a></li>
+             </ul>
+        </div>
+  </div>
+<div class="dash"></div>
+</header>
+<section class="footer--section" th:fragment="footer">
+     <h6 class="blue">(C) Остапенко Е.В., 2023<br>ОГРНИП 123212321</h6>
+     <ul class="footer--links--wrap">
+           <li><a href="#">Договор-оферта</a></li>
+           <li><a href="#">Политика обработки<br>персональных<br>данных</a></li>
+           <li class="footer-telegram-wrap column center"><a href="#">О проекте</a><a href="#"><img src="../src/icons/telegram.svg" alt="telegram"></a></li>
+       </ul>
+  </section>
+</body>
+</html>

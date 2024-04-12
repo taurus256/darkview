@@ -7,7 +7,7 @@
     <title>DarkView/Profile</title>
 </head>
 <body class="column center small">
-    <script src="../scripts/components/header.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
     <section class="subscription--offer">
         <h6>На данный момент у вас версия FREE. Чтобы получить доступ ко всем функциям, необходимо приобрести версию PRO.</h6>
@@ -113,6 +113,6 @@
         </div>
     </section>
 
-    <script src="../scripts/components/footer.js"></script>
+    <div th:replace="darkview/front-end/pages/fragments :: footer"></div>
 </body>
 </html>
