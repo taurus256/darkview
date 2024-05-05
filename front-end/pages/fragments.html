@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>This is fragments file</title>
+  <title>This is a fragments file</title>
 </head>
 <body>
 <header th:fragment="header">
@@ -12,7 +12,7 @@
             <ul class="sign--options flex">
                   <li><a href="/login" th:if="${#httpServletRequest.remoteUser==null}"><p>ВОЙТИ</p></a></li>
                   <li><a href="/register" th:if="${#httpServletRequest.remoteUser==null}"><p>РЕГИСТРАЦИЯ</p></a></li>
-                  <li><a href="/profile" th:if="${#httpServletRequest.remoteUser!=null}"><p>ПРОФИЛЬ</p></a></li>
+                  <li><a href="/task/profile" th:if="${#httpServletRequest.remoteUser!=null}"><p>ПРОФИЛЬ</p></a></li>
                   <li><a href="/logout" th:if="${#httpServletRequest.remoteUser!=null}"><p>ВЫХОД</p></a></li>
              </ul>
         </div>

@@ -10,9 +10,13 @@
     <div th:replace="darkview/front-end/pages/fragments :: header"></div>
     <script src="../scripts/popupMessage.js"></script>
     <script  th:inline="javascript">
-        if (window.location.href.includes("?error")){
+        let index = window.location.href.indexOf('error=');
+        if (index > 0){
             var popup = new PopupMessage();
-            popup.show("Не удалось войти в систему. Проверьте имя пользователя и пароль");
+            popup.show(
+                decodeURIComponent(window.location.href.substring(index + 6, window.location.href.length))
+                .replaceAll('+',' ')
+                );
         }
     </script>
     <section class="column center">

@@ -9,10 +9,10 @@
 <body class="column center small">
     <div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
-    <section class="subscription--offer">
+    <!--<section class="subscription--offer">
         <h6>На данный момент у вас версия FREE. Чтобы получить доступ ко всем функциям, необходимо приобрести версию PRO.</h6>
         <button type="button" class="button-huge">Приобрести версию PRO за 300 руб/месяц</button>
-    </section>
+    </section>-->
 
     <section class="done-tasks">
         <h2><b>Выполненные задачи</b></h2>
@@ -31,15 +31,17 @@
             </div>
 
             <div class="task--container">
-                <div class="task">
-                    <p>www.example.com</p>
-                    <div class="task--right">
-                        <p>99:99</p>
-                        <p>2560px</p>
-                        <a href="#">Посмотреть результат</a>
+                <div class="task" th:each="task : ${taskList}">
+                    <p th:text="${task.getUrl()}">www.example.com!</p>
+                    <div class="task--right" >
+                        <p th:text="${task.getCreateTime()}">99:99</p>
+                        <p th:text="${task.getResolution().name()}">2560px</p>
+                        <a th:href="@{/task/{taskId}(taskId=${task.getId()})}" target="_blank" href="#">Посмотреть результат</a>
                     </div>
                 </div>
             </div>
+
+
             <div class="tasks--accordion">
                 <input type="checkbox" name="tasks--accordion" id="tasks-ac-cb1">
                 <label for="tasks-ac-cb1">
@@ -96,18 +98,18 @@
     </section>
     
     <section class="profile-options">
-        <h2><b>Параметры профиля</b></h2>
+        <h2><b>Управление профилем</b></h2>
         <div class="profile-options--container">
-            <div class="profile-option">
+            <!--<div class="profile-option">
                 <button type="button" class="button-huge">Редактировать профиль</button>
                 <p>Даёт возможность изменить имя, e-mail и пароль.</p>
             </div>
             <div class="profile-option">
                 <button type="button" class="button-huge button-red">Удалить аккаунт</button>
                 <p>Удаляет текущий аккаунт</p>
-            </div>
+            </div>-->
             <div class="profile-option">
-                <button type="button" class="button-huge button-red">Выйти из аккаунта</button>
+                <button type="button" class="button-huge button-red" onclick = "window.location = 'logout';">Выйти из аккаунта</button>
                 <p>Выход из текущего аккаунта</p>
             </div>
         </div>
