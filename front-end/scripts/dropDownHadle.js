@@ -39,11 +39,12 @@
     let dropMenu = document.createElement("div")
     dropMenu.classList.add("dropdown-content")
     dropMenu.id = 'myDropdown';
-    document.getElementById("widthSpan").value = '_1900';
+    document.getElementById("widthInput").value = '_1900';
     widthArray.forEach(width => {
         let widthOption = document.createElement('div');
         widthOption.innerText = width
-        widthOption.addEventListener('click', () => {document.getElementById("widthSpan").value = '_' + width;})
+        widthOption.addEventListener('click', () => {document.getElementById("widthInput").value = '_' + width;
+        document.getElementById("widthSpan").textContent = width;})
         let separator = document.createElement('div');
         separator.classList.add('dash')
         dropMenu.appendChild(separator)

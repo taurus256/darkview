@@ -128,7 +128,7 @@ header > .dash {
 .wrapper{
     padding: 0px 144px 0px 144px;
     align-items: center;
-    height: 215px;
+    height: 115px;
 }
 
 /* Для уменьшенных хедеров */
@@ -140,9 +140,6 @@ body.small > header > .wrapper{
     align-items: center;
 }
 
-.nav--left-side > img{
-    width: 400px;
-}
 
 .sign--options > li{
     padding: 38px;

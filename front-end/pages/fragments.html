@@ -7,25 +7,25 @@
 <body>
 <header th:fragment="header">
 <div class="wrapper flex space-between">
-      <div class="nav--left-side"><img src="../src/img/DarkViewLogo.png" alt="DarkViewLogo"></div>
+      <div class="nav--left-side"><img src="../src/img/DarkViewLogoSmall.png" alt="DarkViewLogo"></div>
       <div class="nav--right-side">
             <ul class="sign--options flex">
                   <li><a href="/login" th:if="${#httpServletRequest.remoteUser==null}"><p>ВОЙТИ</p></a></li>
                   <li><a href="/register" th:if="${#httpServletRequest.remoteUser==null}"><p>РЕГИСТРАЦИЯ</p></a></li>
-                  <li><a href="/task/profile" th:if="${#httpServletRequest.remoteUser!=null}"><p>ПРОФИЛЬ</p></a></li>
-                  <li><a href="/logout" th:if="${#httpServletRequest.remoteUser!=null}"><p>ВЫХОД</p></a></li>
+                  <li th:if="${#httpServletRequest.remoteUser!=null}"><a href="/task/profile"><p>ПРОФИЛЬ</p></a></li>
+                  <li th:if="${#httpServletRequest.remoteUser!=null}"><a href="/logout"><p>ВЫХОД</p></a></li>
              </ul>
         </div>
   </div>
 <div class="dash"></div>
 </header>
 <section class="footer--section" th:fragment="footer">
-     <h6 class="blue">(C) Остапенко Е.В., 2023<br>ОГРНИП 123212321</h6>
-     <ul class="footer--links--wrap">
-           <li><a href="#">Договор-оферта</a></li>
-           <li><a href="#">Политика обработки<br>персональных<br>данных</a></li>
-           <li class="footer-telegram-wrap column center"><a href="#">О проекте</a><a href="#"><img src="../src/icons/telegram.svg" alt="telegram"></a></li>
-       </ul>
+     <h6 class="blue">Tau Studio, 2024</h6>
+<!--     <ul class="footer&#45;&#45;links&#45;&#45;wrap">-->
+<!--           <li><a href="#">Договор-оферта</a></li>-->
+<!--           <li><a href="#">Политика обработки<br>персональных<br>данных</a></li>-->
+<!--           <li class="footer-telegram-wrap column center"><a href="#">О проекте</a><a href="#"><img src="../src/icons/telegram.svg" alt="telegram"></a></li>-->
+<!--       </ul>-->
   </section>
 </body>
 </html>
