@@ -7,7 +7,11 @@
 <body>
 <header th:fragment="header">
 <div class="wrapper flex space-between">
-      <div class="nav--left-side"><img src="../src/img/DarkViewLogoSmall.png" alt="DarkViewLogo"></div>
+      <div class="nav--left-side">
+        <a th:href="@{ ${#httpServletRequest.remoteUser==null} ? '/' : '/start'}">
+          <img src="../src/img/DarkViewLogoSmall.png" alt="DarkViewLogo">
+        </a>
+      </div>
       <div class="nav--right-side">
             <ul class="sign--options flex">
                   <li><a href="/login" th:if="${#httpServletRequest.remoteUser==null}"><p>ВОЙТИ</p></a></li>
