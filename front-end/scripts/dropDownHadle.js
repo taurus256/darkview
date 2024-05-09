@@ -25,7 +25,7 @@
 
     let tooltip = document.createElement('div')
     tooltip.classList.add('popup-info-msg')
-    tooltip.textContent = 'Выберите ширину'
+    tooltip.textContent = 'Ширина получаемого изображения'
     tooltip.id = 'popup-info-msg-1'
 
     tooltipContainer.appendChild(info)
