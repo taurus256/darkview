@@ -381,7 +381,7 @@ async function sendRequestToDiff ( jobUUID ) {
   console.log('Запущено вычисление разницы для задачи ' + TaskUUID + ' задания ' + jobUUID)
   try {
     // PUT /rest/{task_id}/{job_id}
-
+    window.popup.show ('Запуск сравнения...');
     const response = await fetch('/task/' + TaskUUID + '/diff/' + jobUUID, {
       method: 'POST',
       headers: {

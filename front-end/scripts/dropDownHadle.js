@@ -1,5 +1,5 @@
 (function(){
-    const widthArray = ['1900', '1280', '1024', '768']
+    const widthArray = ['1900', '1600', '1280', '1024', '768']
     const rootNode = document.getElementById("settings-top")
     let dropDown = document.createElement('button')
     dropDown.classList.add("dropbtn")
@@ -39,12 +39,14 @@
     let dropMenu = document.createElement("div")
     dropMenu.classList.add("dropdown-content")
     dropMenu.id = 'myDropdown';
-    document.getElementById("widthInput").value = '_1900';
+    document.getElementById("widthInput").value = '_1600';
     widthArray.forEach(width => {
         let widthOption = document.createElement('div');
         widthOption.innerText = width
-        widthOption.addEventListener('click', () => {document.getElementById("widthInput").value = '_' + width;
-        document.getElementById("widthSpan").textContent = width;})
+        widthOption.addEventListener('click', () => {
+        document.getElementById("widthInput").value = '_' + width;
+        document.getElementById("widthSpan").textContent = width;
+        })
         let separator = document.createElement('div');
         separator.classList.add('dash')
         dropMenu.appendChild(separator)
