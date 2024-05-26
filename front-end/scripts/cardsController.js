@@ -282,7 +282,7 @@ function updateInArray ( id, updatedItem) {
 function retry ( id ) {
   let curCard = CardsMap.get(id);
   curCard.status = 'IN_PROGRESS'
-  // sendRequestToRetry(uuid, id);
+  sendRequestToRetry(uuid, id);
 }
 
 
@@ -351,12 +351,12 @@ function display() {
 }
 
 // TODO
-async function sendRequestToRetry(jobUUID, taskUUID){
+async function sendRequestToRetry(taskUUID, jobUUID){
   return;
   try {
     // PUT /rest/{task_id}/{job_id}
-
-    const response = await fetch(``, {
+    console.log('Start retrying ' + '/job/' + jobUUID + '/retry');
+    const response = await fetch('/job/' + jobUUID + '/retry', {
       method: 'PUT',
       headers: {
         accept: 'application/json',
@@ -367,11 +367,11 @@ async function sendRequestToRetry(jobUUID, taskUUID){
       throw new Error(`Error! status: ${response.status}`);
     }
 
-    const result = await response.json();
-    getArrayOfSections(result);
-    display();
-    return result;
-
+//    const result = await response.json();
+//    getArrayOfSections(result);
+//    display();
+//    return result;
+    window.cardsUpdateInterval = setInterval(() => getCards(), 5000);
   } catch (err) {
     console.log(err);
   }
