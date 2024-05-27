@@ -405,7 +405,8 @@ async function sendRequestToDiff ( jobUUID ) {
 
 async function getCards() {
   try {
-    let taskUUID = window.location.href.substring(window.location.href.lastIndexOf('/')+1, window.location.href.indexOf('?'));
+    let uuidPosition = window.location.href.indexOf('/task/') + 6;
+    let taskUUID = window.location.href.substring(uuidPosition, uuidPosition + 36);
     let testOnline = '/rest/v2/' + taskUUID + '/data';
     const response = await fetch(`${testOnline}`, {
       method: 'GET',

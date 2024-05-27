@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
                     <div class="task--right" >
                         <p th:text="${task.getCreateTime()}">99:99</p>
                         <p th:text="${task.getResolution().name()}">2560px</p>
-                        <a th:href="@{/task/{taskId}(taskId=${task.getId()})}" target="_blank" href="#">Посмотреть результат</a>
+                        <a th:href="@{/task/{taskId}(taskId=${task.getUuid()})}" target="_blank" href="#">Посмотреть результат</a>
                     </div>
                 </div>
             </div>
