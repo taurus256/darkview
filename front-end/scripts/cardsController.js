@@ -244,7 +244,7 @@ function CheckForStage () {
 
   // Если у всех, кроме 1, карточек есть readyToShowDiff = true
   // то показываем различия и перестаем предлагать сравнить
-  if ( ReadyToShowDiffCards_num == CardsMap.size - 1 ) {
+  if ( ReadyToShowDiffCards_num > 0 && ReadyToShowDiffCards_num == CardsMap.size - 1 ) {
     curTaskStage = STAGES[2]; //ReadyToShowDiff
     window.popup.hide();
     window.clearInterval(window.cardsUpdateInterval);
