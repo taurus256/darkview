@@ -85,17 +85,23 @@
                             <label class="render-chkbx" id="mac-safari" th:if='${applicationNames!=null && applicationNames.contains("MAC_SAFARI")}'>
                                 <input id="mac-safari-input" type="checkbox" name="macSafari">
                                 <div class="chkbx-mark"></div>
-                                <div class="chkbx-txt"> safari </div>
+                                <div class="chkbx-txt"> SAFARI </div>
                             </label>
                         </div>
                         <div class="render-card--select-browser">
                             <label class="render-chkbx" id="mac-firefox" th:if='${applicationNames!=null && applicationNames.contains("MAC_FIREFOX")}'>
                                 <input id="mac-firefox-input" type="checkbox" name="macFirefox">
                                 <div class="chkbx-mark"></div>
-                                <div class="chkbx-txt"> safari </div>
+                                <div class="chkbx-txt"> FIREFOX </div>
                             </label>
                         </div>
-
+                        <div class="render-card--select-browser">
+                            <label class="render-chkbx" id="mac-chrome" th:if='${applicationNames!=null && applicationNames.contains("MAC_CHROME")}'>
+                                <input id="mac-chrome-input" type="checkbox" name="macChrome">
+                                <div class="chkbx-mark"></div>
+                                <div class="chkbx-txt"> CHROME </div>
+                            </label>
+                        </div>
                     </div>
                     <!-- iOS -->
                     <div class="render-card os-card">
@@ -109,9 +115,16 @@
                         </div>
                         <div class="render-card--select-browser">
                             <label class="render-chkbx" id="ios-safari" th:if='${applicationNames!=null && applicationNames.contains("IOS_IPHONEPRO")}'>
-                                <input id="ios-safari-input" type="checkbox" name="iosIPHONE_PRO">
+                                <input id="ios-iphonepro-input" type="checkbox" name="iosIPHONE_PRO">
                                 <div class="chkbx-mark"></div>
-                                <div class="chkbx-txt"> safari </div>
+                                <div class="chkbx-txt"> IPHONE PRO </div>
+                            </label>
+                        </div>
+                        <div class="render-card--select-browser">
+                            <label class="render-chkbx" id="ios-safari" th:if='${applicationNames!=null && applicationNames.contains("IOS_IPHONESE")}'>
+                                <input id="ios-iphonese-input" type="checkbox" name="iosIPHONE_SE">
+                                <div class="chkbx-mark"></div>
+                                <div class="chkbx-txt"> IPHONE SE </div>
                             </label>
                         </div>
                     </div>
