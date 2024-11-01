@@ -12,11 +12,10 @@
     <div th:replace="darkview/front-end/pages/fragments :: header"></div>
 
     <main class="column center">
-        <h1 class="h1--main-header"><b>DarkView</b> — это сервис для создания<br>скриншотов сайтов  в различных браузерах
-            <br>под разными операционными системами</h1>
-
+        <h1 class="h1--main-header"><b>DarkView</b> — это сервис для тестирования верстки сайтов<br/><br/>
+        Он позволяет получить скриншоты выбранной страницы,<br/> выполненные на различных браузерах в нескольких ОС</h1>
         <div class="browsers--container center">
-            <div class="dash"></div>
+            <!--        <div class="dash"></div>-->
             <div class="browsers--drop-down column center">
                 <input type="checkbox" name="browsers--accordion" id="br-ac-cb1">
                 <label for="br-ac-cb1">
@@ -33,13 +32,11 @@
                             <td>&nbsp;</td>
                             <td><div class="table--browser"><img src="../src/icons/browsers/chrome.png" alt=""><p>CHROME</p></div></td>
                             <td><div class="table--browser"><img src="../src/icons/browsers/fire-fox.png" alt=""><p>FIREFOX</p></div></td>
-                            <td><div class="table--browser"><img src="../src/icons/browsers/opera.png" alt=""><p>OPERA</p></div></td>
                             <td><div class="table--browser"><img src="../src/icons/browsers/edge.png" alt=""><p>EDGE</p></div></td>
                             <td><div class="table--browser"><img src="../src/icons/browsers/safari.png" alt=""><p>SAFARI</p></div></td>
                         </tr>
                         <tr>
                             <td><div class="table--browser-right"><img src="../src/icons/systems/WIN.png" alt=""><p>WINDOWS</p></div></td>
-                            <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
@@ -49,15 +46,13 @@
                             <td><div class="table--browser-right"><img src="../src/icons/systems/LIN.png" alt=""><p>LINUX</p></div></td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
-                            <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td><div class="table--browser-right"><img src="../src/icons/systems/MAC.png" alt=""><p>macOS</p></div></td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
+                            <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                             <td>&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                         </tr>
@@ -66,47 +61,30 @@
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td>
                             <td><img class="plus-icon" src="../src/icons/plus.svg" alt="+">&nbsp;</td>
                         </tr>
                       </table>
-                      
-                    <!-- Теперь это таблица -->
-                    <!-- <div class="browsers-item flex">
-                        <img src="../src/icons/browsers/edge.png" alt=">">
-                        <h1>EDGE</h1>
-                    </div>
-                    <div class="browsers-item flex">
-                        <img src="../src/icons/browsers/fire-fox.png" alt=">">
-                        <h1>FIREFOX</h1>
-                    </div>
-                    <div class="browsers-item flex">
-                        <img src="../src/icons/browsers/chrome.png" alt=">">
-                        <h1>CHROME</h1>
-                    </div>
-                    <div class="browsers-item flex">
-                        <img src="../src/icons/browsers/opera.png" alt=">">
-                        <h1>OPERA</h1>
-                    </div> -->
                 </div>
             </div>
-            <div class="dash"></div>
+            <!--        <div class="dash"></div>-->
         </div>
-        
+
+
+        <section class="how-to-use column center">
+            <h1><b>Как это работает</b></h1>
+            <video controls src="../src/video/show.mp4"></video>
+        </section>
+<!--        <div class="dash"></div>-->
         <div class="main-quick-info column center">
             <h5 class="blue"><span><a th:href="@{/register}">Зарегистрируйтесь</a></span>, чтобы воспользоваться сервисом. Это бесплатно и без рассылок</h5>
 <!--            <h6 class="blue"><b>Регистрацию всегда можно отменить</b></h6>-->
         </div>
 
-        <div class="dash"></div>
+
         
-        <section class="how-to-use column center">
-            <h1><b>Узнайте, как это работает</b></h1>
-            <video src="#" poster="../src/img/thumbnail.jpg"></video>
-        </section>
-        
+
         <section class="FAQ--container center">
-            <div class="dash"></div>
+            <!--        <div class="dash"></div>-->
             <div class="FAQ--drop-down column center">
                 <input type="checkbox" name="FAQ--accordion" id="FAQ-ac-cb1">
                 <label for="FAQ-ac-cb1">
@@ -114,32 +92,34 @@
                         <svg width="24" height="31" viewBox="0 0 24 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path id="Polygon 1" d="M24 15.5L-1.42741e-06 30.6554L-1.02484e-07 0.344555L24 15.5Z" fill="white"/>
                         </svg>
-                        <h5><b>Часто задаваемые вопросы</b></h5>
+                        <h5><b>Вопросы и ответы</b></h5>
                     </div>
                 </label>
                 <div class="FAQ--list column space-between">
                     <div class="FAQ--item">
                         <p><b>Любую страницу можно отрисовать?</b></p>
-                        <p>Сервис предназначен для проверки верстки статических страниц<br> Страницы с динамическим содержимым (видео, всплывающими окнами) и страницы с закрепленным вверху меню могут отрисовываться некорректно.</p>
+                        <p>Чтобы быть успешно отрисованной, страница должна:</p>
+                        <p> - быть доступной через интернет (располагаться у хостинг-провайдера или на машине с "белым" IP)</p>
+                        <p> - не содержать региональных ограничений (серверы отрисовки находятся как в РФ, так и за границй)</p>
+                        <p> - желательно - не иметь статически размещенных элементов, т.е. таких, которые не меняют положения при прокрутке. Поскольку сервис выполняет промотку страницы и "склеивает" её из нескольких скриншотов, такие элементы будут появляться в результате несколько раз</p>
                     </div>
                     <div class="FAQ--item">
                         <p><b>Зачем нужно регистрироваться?</b></p>
                         <p>Регистрация нужна, чтобы убедиться, что сервис используют живые люди, а не боты.</p>
                     </div>
                     <div class="FAQ--item">
-                        <p><b>Сервис бесплатный?</b></p>
-                        <p>На текущий момент - да, есть только ограничение на количество выполняемых заданий на одного пользователя</p>
+                        <p><b>Каков статус сервиса. Он бесплатный?</b></p>
+                        <p>Сервис бесплатен, он находится в стадии ограниченного тестирования. Это значит, что над ним ведется работа и он может становиться недоступным (как весь, так и отдельные компоненты)</p>
                     </div>
                     <div class="FAQ--item">
-                        <p><b>У меня есть ещё вопросы (или предложения). 
-                            <br>Как с вами связаться?</b></p>
+                        <p><b>У меня есть ещё вопросы (или предложения). Как связаться с разработчиком?</b></p>
                         <p>По всем вопросам вы можете написать на e-mail <span><a href="">info@darkview.ru</a></span> или задать свой вопрос в <span><a href="">Telegram</a></span></p>
                     </div>
                 </div>
             </div>
-            <div class="dash"></div>
+            <!--        <div class="dash"></div> -->
         </section>
-<!--        <div class="dash"></div>-->
+<!--               <div class="dash"></div>-->
 
 <!--        <section class="main-subscriptions column center">-->
 <!--            <h1><b>Подключите pro-аккаунт для доступа <br> ко всем функциям сервиса</b></h1>-->
@@ -177,7 +157,7 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </section>-->
-<!--    </main>-->
+    </main>
 
     <div th:replace="darkview/front-end/pages/fragments :: footer"></div>
 </body>
