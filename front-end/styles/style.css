@@ -365,7 +365,7 @@ main{
 
 .FAQ--drop-down input:checked ~ .FAQ--list{
     transition: 300ms;
-    height: 750px;
+    height: 850px;
     padding-top: 74px;
     gap: 40px;
 }
