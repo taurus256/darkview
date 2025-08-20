@@ -1003,10 +1003,16 @@ footer{
     gap: 18px;
 }
 
-.register-input{
+.small-input-check{
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+}
+
+.register-input, .register-input-check{
     height: 75px;
     width: auto;
-    min-width: 700px;
     border-radius: 10px;
     background: var(--color-input-blue);
     color: var(--color-white);
@@ -1020,6 +1026,14 @@ footer{
     font-weight: 400;
     line-height: normal;
     letter-spacing: 1.2px;
+}
+
+.register-input{
+    min-width: 700px;
+}
+
+.register-input-check{
+  min-width: 100px;
 }
 
 .backboard--registration{
